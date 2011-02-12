@@ -1,0 +1,19 @@
+# zathurarc
+
+# colors
+set statusbar_bgcolor #303030
+set statusbar_fgcolor #606060
+
+# settings
+set height 900
+set width 1440
+set adjust_open width
+
+# key bindings
+map <PageUp> navigate previous
+map <PageDown> navigate next
+
+map + zoom in
+map - zoom out
+
+map <C-q> quit
