@@ -4,8 +4,6 @@
 # vim:nu:ai:si:et:ts=4:sw=4:fdm=indent:fdn=1:ft=conf:
 #----------------------------------------------------
 
-mpd_host = "localhost"
-mpd_port = "6600"
 mpd_music_dir = "~/files/music"
 mpd_connection_timeout = "5"
 playlist_disable_highlight_delay = "3"

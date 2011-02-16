@@ -5,8 +5,8 @@ static const char font[]            = "Dina 8";
 #define NUMCOLORS 3                     // need at least 3
 static const char colors[NUMCOLORS][ColLast][8] = {
 	// border   foreground  background
-	{ "#202020", "#757575", "#202020" }, // 0 = normal
-	{ "#202020", "#6d2857", "#202020" }, // 1 = selected
+	{ "#202020", "#757575", "#f0f0f0" }, // 0 = normal
+	{ "#202020", "#f0f0f0", "#6d2857" }, // 1 = selected
 	{ "#202020", "#ff3b77", "#ff0000" }, // 2 = urgent/warning
 };
 static const unsigned int borderpx  = 1;        /* border pixel of windows */

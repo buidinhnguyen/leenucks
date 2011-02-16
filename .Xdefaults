@@ -4,7 +4,7 @@
 Xcursor.theme: CG
 
 ! Colors
-#include "/home/uh/.xcolors/jasonwryan.xcolors"
+#include "/home/uh/.config/xcolors/grey.xcolors"
 
 ! Fonts
 Xft.antialias: true
@@ -13,8 +13,6 @@ Xft.rgba:      rgb
 Xft.hintstyle: hintslight
 
 ! Urxvt
-!URxvt*font:       -*-profont-*-*-*-*-12-*-*-*-*-*-*-*
-!URxvt*boldFont:   -*-profont-*-*-*-*-12-*-*-*-*-*-*-*
 URxvt*font:        -*-proggyoptis-medium-r-normal-*-10-*-*-*-*-*-*-*
 URxvt*boldFont:    -*-proggyoptis-medium-r-normal-*-10-*-*-*-*-*-*-*
 
@@ -26,10 +24,7 @@ URxvt*visualBell:      false
 
 URxvt*depth:       24
 URxvt*buffered:    true
-URxvt*foreground:  #dcdccc
-URxvt*background:  rgba:1111/1111/1111/dddd
-URxvt*transparent: true
-URxvt*shading:     40
+URxvt*transparent: false
 
 URxvt*intensityStyles: true
 URxvt*termName:        rxvt-256color

@@ -66,7 +66,7 @@ alternative_order text/plain text/enriched text/html              # but save it 
   set forward_format      = "Fwd: %s"                             # format for subject when forwarding
   set forward_quote                                               # include message in forwards
   set include                                                     # include message in replies
-  set realname            = "Uwe"                                 # who am i?
+  set realname            = "Ute"                                 # who am i?
   set reply_to                                                    # reply to Reply-to: field, not From:
 
 # headers to show
@@ -75,11 +75,12 @@ unignore from: to: cc: date: subject:                             # show only th
 hdr_order from: to: cc: date: subject:                            # and in this order
 
 # lists and boxes
-subscribe arch-dev-public offlineimap-project
-mailboxes +--Gmail------ +GMail/INBOX +GMail/all_mail +GMail/arch-bbs +GMail/arch-bugs +GMail/arch-dev-public +GMail/drafts +GMail/offlineimap +GMail/sent_mail +GMail/spam +GMail/trash 
+subscribe arch-general arch-dev-public dev@suckless.org offlineimap-project pacman-dev webkit-gtk
+mailboxes +--Gmail------ +GMail/INBOX +GMail/all_mail +GMail/archlinux +GMail/identica +GMail/intuxication +GMail/offlineimap +GMail/sent_mail +GMail/spam +GMail/suckless +GMail/t-online +GMail/trash +GMail/webkit-gtk
+mailboxes +--Personal--- +personal/INBOX +personal/all_mail +personal/sent_mail +personal/spam +personal/trash
 
 # colors
-source ~/.mutt/colors.muttrc
+source ~/.mutt/white.muttrc
 
 # conditionally source sidebar options 
 source `FILE=$HOME/.mutt/sidebar.muttrc; mutt -v | grep -Fq sidebar || FILE=/dev/null; echo $FILE`
@@ -91,6 +92,7 @@ source ~/.mutt/gpg.rc                                             # for pgp
 
 # override with account specific folder-hooks
 folder-hook GMail/*      source ~/.mutt/gmail.muttrc
+folder-hook personal/*   source ~/.mutt/personal.muttrc
 
 bind index,pager \#   noop
 bind index,pager \&   noop

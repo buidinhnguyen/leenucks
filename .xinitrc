@@ -10,7 +10,7 @@ eval $(cat ${HOME}/.fehbg)                          # wallpaper
 xsetroot -cursor_name left_ptr                      # cursor
 xset -dpms s off                                    # disable screensaver and energy settings
 urxvtd -q -f -o                                     # start urxvt daemon
-xrdb -merge ${HOME}/.Xdefaults                      # load Xdefaults
+xrdb -load ${HOME}/.Xdefaults                       # load Xdefaults
 xset fp+ /usr/share/fonts/local                     # add local fonts
 xbindkeys &                                         # multimedia keys
 parcellite -nd &                                    # clipboard manager 
