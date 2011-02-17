@@ -24,6 +24,10 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
+# keybindings
+bindkey "^[[7~" beginning-of-line
+bindkey "^[[8~" end-of-line
+
 # automagic url quoter
 zle -N self-insert url-quote-magic
 

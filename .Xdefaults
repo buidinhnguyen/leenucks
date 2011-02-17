@@ -27,7 +27,6 @@ URxvt*buffered:    true
 URxvt*transparent: false
 
 URxvt*intensityStyles: true
-URxvt*termName:        rxvt-256color
 URxvt*urgentOnBell:    true
 
 ! URLs in rxvt, keyboard-select and copy without mouse

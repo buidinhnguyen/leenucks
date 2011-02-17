@@ -30,6 +30,7 @@ static const Rule rules[] = {
   { "mediathek-Main", NULL,       NULL,          1 << 3,       True,        -1 },
   { "Pokerth",        NULL,       NULL,          1 << 3,       True,        -1 },
   { "Qemulator",      NULL,       NULL,          1 << 3,       True,        -1 },
+  { "Gajim.py",       NULL,       NULL,          1 << 3,       True,        -1 },
   { NULL,             NULL,       "LibreOffice", 1 << 3,       False,       -1 },
   { "feh",            NULL,       NULL,          0,            True,        -1 },
   { "MPlayer",        NULL,       NULL,          0,            True,        -1 },
