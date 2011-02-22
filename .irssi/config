@@ -215,7 +215,6 @@ settings = {
   "irc/core" = {
     join_auto_chans_on_invite = "no";
     kick_first_on_kickban = "no";
-    alternate_nick = "hmogsm";
     skip_motd = "yes";
   };
 };
