@@ -16,7 +16,7 @@ static const Bool topbar            = True;     /* False means bottom bar */
 static const Bool focusonclick      = True;     /* Change focus only on click */
 
 /* tagging */
-static const char *tags[] = { "1/main", "2/web", "3/gimp", "4/foo" };
+static const char *tags[] = { "1/main", "2/web", "3/gimp", "4/rss", "5/foo" };
 
 static const Rule rules[] = {
 	/* class            instance    title          tags mask     isfloating   monitor */
@@ -26,27 +26,31 @@ static const Rule rules[] = {
   { NULL,             "Browser",  NULL,          1 << 1,       True,        -1 },
   { "Chromium",       NULL,       NULL,          1 << 1,       False,       -1 },
   { "Gimp",           NULL,       NULL,          1 << 2,       True,        -1 },
-  { "zathura",        NULL,       NULL,          1 << 3,       True,        -1 },
-  { "mediathek-Main", NULL,       NULL,          1 << 3,       True,        -1 },
-  { "Pokerth",        NULL,       NULL,          1 << 3,       True,        -1 },
-  { "Qemulator",      NULL,       NULL,          1 << 3,       True,        -1 },
-  { "Gajim.py",       NULL,       NULL,          1 << 3,       True,        -1 },
-  { NULL,             NULL,       "LibreOffice", 1 << 3,       False,       -1 },
+  { "Gajim.py",       NULL,       NULL,          1 << 3,       False,       -1 },
+  { "mediathek-Main", NULL,       NULL,          1 << 4,       True,        -1 },
+  { "Pokerth",        NULL,       NULL,          1 << 4,       True,        -1 },
+  { "Qemulator",      NULL,       NULL,          1 << 4,       True,        -1 },
+  { NULL,             NULL,       "LibreOffice", 1 << 4,       False,       -1 },
   { "feh",            NULL,       NULL,          0,            True,        -1 },
   { "MPlayer",        NULL,       NULL,          0,            True,        -1 },
   { NULL,             NULL,       "Save file",   0,            True,        -1 },
+  { "zathura",        NULL,       NULL,          0,            True,        -1 },
   { "XFontSel",       NULL,       NULL,          0,            True,        -1 },
 };
 
 /* layout(s) */
+#include "bstack.c"
+#include "bstackhoriz.c"
 static const float mfact      = 0.50; /* factor of master area size [0.05..0.95] */
 static const Bool resizehints = True; /* True means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
+  { "TTT",      bstack },  /* first entry is default */
+	{ "[]=",      tile },
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+  { "===",      bstackhoriz },
 };
 
 /* key definitions */
@@ -81,9 +85,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+  { MODKEY,                       XK_u,      setlayout,      {.v = &layouts[0]} },
+  { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[1]} },
+  { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
+  { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[3]} },
+  { MODKEY,                       XK_y,      setlayout,      {.v = &layouts[4]} }, 
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
