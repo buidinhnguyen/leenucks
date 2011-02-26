@@ -34,6 +34,7 @@ URxvt.perl-ext-common:  url-select,keyboard-select
 URxvt.keysym.M-u:       perl:url-select:select_next
 URxvt.keysym.M-s:       perl:keyboard-select:search
 URxvt.keysym.M-Escape:  perl:keyboard-select:activate
+URxvt.urlLauncher:      /usr/bin/firefox 
 URxvt.perl-ext:         default
 URxvt.underlineURLs:    true
 

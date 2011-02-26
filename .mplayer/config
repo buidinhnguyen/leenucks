@@ -1,7 +1,7 @@
 # Write your default config options here!
 
 vo=xv
-fs=no
+fs=yes
 zoom=yes
 vf-add=screenshot
 
@@ -20,8 +20,15 @@ spuaa=4
 # Less stdout text
 quiet=1
 
+# WUXGA 
+aspect=16:10
+
 lirc="0"
 nojoystick=1
+
+# colorize
+msgmodule=1
+msgcolor=1
 
 cache=16000
 lavdopts=skiploopfilter=all:threads=4
