@@ -20,9 +20,6 @@ spuaa=4
 # Less stdout text
 quiet=1
 
-# WUXGA 
-aspect=16:10
-
 lirc="0"
 nojoystick=1
 
