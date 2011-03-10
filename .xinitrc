@@ -15,6 +15,8 @@ xset fp+ /usr/share/fonts/local                     # add local fonts
 xbindkeys &                                         # multimedia keys
 parcellite -nd &                                    # clipboard manager 
 statnot ~/.config/statnot/config.py&
+setxkbmap gb colemak                                # colemak layout
+xset r 66
 
 exec startdwm                                       # dwm
 

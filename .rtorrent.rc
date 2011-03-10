@@ -46,6 +46,5 @@ directory = ~/tmp/dl
 schedule = watch_directory,5,5,load_start=~/tmp/tr/*.torrent
 schedule = untied_directory,10,10,close_untied=
 
-# move completed torrents and mail me
+# move completed torrents 
 system.method.set_key = event.download.finished,move_complete,"execute=mv,-u,$d.get_base_path=,~/tmp/anime/;d.set_directory=~/tmp/anime/"
-system.method.set_key = event.download.finished,notify_me,"execute=~/bin/rtorrent_mail.sh,$d.get_name="
