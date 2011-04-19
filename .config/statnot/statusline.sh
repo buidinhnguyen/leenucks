@@ -39,7 +39,7 @@ fi
 }
 
 function disk {
-  root=$(df -P | awk '/dm-4/ { print $5 }')
+  root=$(df -P | awk '/root/ { print $5 }')
   home=$(df -P | awk '/home/ { print $5 }')
   echo "Disk: ${root}/${home} | "
 }
@@ -60,7 +60,7 @@ function music {
   elif [[ "${mpcr}" -eq "1" ]] ; then
     echo -n "[ ${mpcradio} | "
   else
-    echo -n "[ ${mpc} | "
+    echo -n "[ ${mpc}| "
   fi
 }
 
@@ -84,14 +84,18 @@ function date_mute {
 	dm=$(date +'%H:%M')
 	vol=$(amixer -c 0 get Master | awk '/^  Mono:/ { print $3 }')
 	if [ "${vol}" -eq "0" ]; then
-		echo -e "--Mute-- ${dm} ] "
+		echo -e " --Mute-- ${dm} ] "
 	else
-		echo "${d} ] " 
+		echo " ${d} ] " 
 	fi
 }
 
+function qb {
+  echo "／人◕ ‿‿ ◕人＼ |"
+}
+
 if [[ "$#" -eq "0" ]] ; then
-	echo -ne "$(music)$(netstatus)$(disk)$(newmail)$(uptime_short)$(date_mute)"
+	echo -ne "$(music)$(netstatus)$(disk)$(newmail)$(uptime_short)$(qb)$(date_mute)"
 else
-	echo -ne "$(music)$(netstatus)$(disk)$(newmail)$(uptime_short)\x03$1 \x01] "
+	echo -ne "$(music)$(netstatus)$(disk)$(newmail)$(uptime_short)$(qb)\x03$1 \x01] "
 fi

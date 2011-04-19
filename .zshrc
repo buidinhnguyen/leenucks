@@ -10,7 +10,7 @@ prompt bart
 
 # variables
 export PATH="${PATH}:${HOME}/bin"
-export BROWSER="firefox-nightly"
+export BROWSER="firefox"
 export LANG="en_US.utf8"
 export LC_ALL="en_US.utf8"
 export EDITOR="vim"

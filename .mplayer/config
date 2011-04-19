@@ -28,5 +28,4 @@ msgmodule=1
 msgcolor=1
 
 cache=16000
-# needed for old mplayer-mt-build, not needed for mplayer2-git (archlinux)
-#lavdopts=skiploopfilter=all:threads=4
+lavdopts=skiploopfilter=all
