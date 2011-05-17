@@ -1,0 +1,21 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use File::Basename;
+
+foreach my $link(@ARGV){
+	my @html_source = `curl -s "$link"` or die "$!";
+	my @asx_links = grep /<li>DSL\s*2000\s*<a href=/, @html_source;
+	unless (defined $asx_links[0]){
+		print "No streamlink found";
+		next;
+	}
+	$asx_links[0] =~ s#.*href="([^"]+)".*#$1#;
+	my $stream_link = `curl -s "$asx_links[0]"` or die "$!";
+	$stream_link =~ s#.*href="([^"]+)".*#$1#xs;
+	my $filename = basename $stream_link;
+	print "Saving stream \"$stream_link\" to file \"$filename\"\n";
+	system("mplayer", "-dumpfile", $filename, "-dumpstream", $stream_link);
+
+}
