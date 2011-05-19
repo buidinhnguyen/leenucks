@@ -2,9 +2,6 @@
 if [[ -z "$(pgrep mpd)" ]] ; then                   # mpd
   mpd ${XDG_CONFIG_HOME}/mpd/mpd.conf
 fi
-if [[ -z "$(pgrep mpdcron)" ]] ; then               # mpdcron
-  mpdcron
-fi
 if [[ -z "$(pgrep cow-notify)" ]] ; then            # notification daemon
   cow-notify &
 fi
