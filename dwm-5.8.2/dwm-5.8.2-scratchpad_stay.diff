@@ -1,8 +1,6 @@
-Only in oldsrc: config.h
-Only in newsrc: dwm-5.8.2-bstack.diff
-diff -up oldsrc/dwm.c newsrc/dwm.c
---- oldsrc/dwm.c	2011-05-19 18:16:04.999729770 +0200
-+++ newsrc/dwm.c	2011-05-19 18:29:03.072809171 +0200
+diff -arup oldsrc/dwm.c newsrc/dwm.c
+--- oldsrc/dwm.c	2011-05-19 18:51:28.455981764 +0200
++++ newsrc/dwm.c	2011-05-19 19:12:49.680274194 +0200
 @@ -223,6 +223,7 @@ static int textnw(const char *text, unsi
  static void tile(Monitor *);
  static void togglebar(const Arg *arg);
@@ -37,7 +35,7 @@ diff -up oldsrc/dwm.c newsrc/dwm.c
  	wc.border_width = c->bw;
  	XConfigureWindow(dpy, w, CWBorderWidth, &wc);
  	XSetWindowBorder(dpy, w, dc.colors[0][ColBorder]);
-@@ -1715,6 +1728,23 @@ togglefloating(const Arg *arg) {
+@@ -1715,9 +1728,27 @@ togglefloating(const Arg *arg) {
  }
  
  void
@@ -61,8 +59,12 @@ diff -up oldsrc/dwm.c newsrc/dwm.c
 +void
  toggletag(const Arg *arg) {
  	unsigned int newtags;
- 
-@@ -1990,11 +2020,13 @@ updatewmhints(Client *c) {
+-
++  
+ 	if(!selmon->sel)
+ 		return;
+ 	newtags = selmon->sel->tags ^ (arg->ui & TAGMASK);
+@@ -1990,11 +2021,13 @@ updatewmhints(Client *c) {
  
  void
  view(const Arg *arg) {
@@ -77,5 +79,3 @@ diff -up oldsrc/dwm.c newsrc/dwm.c
  	arrange(selmon);
  }
  
-Only in newsrc: .dwm.c.swp
-Only in newsrc: scratchpad_stay.diff
