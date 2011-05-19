@@ -76,4 +76,7 @@ function date_mute {
 	fi
 }
 
-xsetroot -name "$(netstatus)$(disk)$(newmail)$(uptime_short)$(date_mute)"
+while true; do
+  xsetroot -name "$(netstatus)$(disk)$(newmail)$(uptime_short)$(date_mute)"
+  sleep 1
+done
