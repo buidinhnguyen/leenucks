@@ -17,7 +17,6 @@ parcellite -nd &                                    # clipboard manager
 setxkbmap gb colemak                                # colemak layout
 xset r 66
 
-~/bin/dwmstatus &                                   # statusbar
+~/bin/statusline.sh &                               # statusbar
 
 exec startdwm                                       # dwm
-
