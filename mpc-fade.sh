@@ -21,28 +21,28 @@ BC="`which bc` -l"
 MPDRUNFILE="/var/run/mpd"
 
 backup_wakeup() {
-   ${AMIXER} -q -c 0 set Master 100 unmute
+	${AMIXER} -q -c 0 set Master 100 unmute
 
-   $(which xterm) -display :0.0 -bg black -fg white \
-   -e $(which mplayer) -loop 0 -playlist ~/.playlist
+	$(which xterm) -display :0.0 -bg black -fg white \ 
+	-e $(which mplayer) -loop 0 -playlist ~/.playlist
 
-   ${AMIXER} -q -c 0 set Master 70 unmute
-}
+	${AMIXER} -q -c 0 set Master 70 unmute
+	}
 
 if [[ "$#" -ne "3" ]] ; then
-   echo "usage: mpc-fade <start volume> <end volume> <length in secs>" ;
-   exit 1 ;
+	echo "usage: mpc-fade <start volume> <end volume> <length in secs>" ;
+	exit 1 ;
 fi
 
 ${AMIXER} -q -c 0 set Master 100 unmute
 
 # check if mpd is running, and with some files to play
 if [[ ! -e "${MPDRUNFILE}" ]] ; then
-   backup_wakeup ;
+	backup_wakeup ;
 fi
 
 if [ `mpc playlist | wc -l` -eq "0" ] ; then
-   backup_wakeup ;
+	backup_wakeup ;
 fi
 
 VOLUME=$1
@@ -51,17 +51,16 @@ sleep 1
 ${MPC} play > /dev/null
 
 if [[ "$1" -lt "$2" ]] ; then
-   while [[ "${VOLUME}" -le "$2" ]] ; do
-           ${MPC} volume "${VOLUME}" > /dev/null ;
-           VOLUME="$((${VOLUME} + 1))" ;
-      sleep `echo "$3/($2-$1)" | $BC` ;
-   done ;
+	while [[ "${VOLUME}" -le "$2" ]] ; do
+		${MPC} volume "${VOLUME}" > /dev/null ;
+		VOLUME="$((${VOLUME} + 1))" ;
+		sleep `echo "$3/($2-$1)" | $BC` ;
+	done
 else
-   while [[ "${VOLUME}" -ge "$2" ]] ; do
-           $MPC volume "${VOLUME}" > /dev/null ;
-           VOLUME=$((${VOLUME} - 1)) ;
-           sleep `echo "$3/($1-$2)" | $BC` ;
-    done ;
+	while [[ "${VOLUME}" -ge "$2" ]] ; do
+		$MPC volume "${VOLUME}" > /dev/null ;
+		VOLUME=$((${VOLUME} - 1)) ;
+		sleep `echo "$3/($1-$2)" | $BC` ;
+	done
 fi
 
-# eof
