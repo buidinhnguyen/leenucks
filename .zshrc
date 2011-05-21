@@ -6,8 +6,6 @@
 autoload -U compinit zmv url-quote-magic
 compinit
 
-PROMPT=$'%n@%m %0(3c,%c,%~) %0(?,%{\e[0;32m%}:%),%{\e[0;31m%}:(%s)%b %# '
-
 # variables
 if [[ -z "$(echo ${PATH} | grep home)" ]] ; then
   export PATH="${HOME}/bin:${PATH}"
@@ -55,6 +53,7 @@ extended_history share_history multios
 # load aliases, completions and prompt
 [[ -r ${XDG_CONFIG_HOME}/zsh/aliases    ]] && source "${XDG_CONFIG_HOME}/zsh/aliases"
 [[ -r ${XDG_CONFIG_HOME}/zsh/comp       ]] && source "${XDG_CONFIG_HOME}/zsh/comp"
+PROMPT=$'%n@%m %0(3c,%c,%~) %0(?,%{\e[0;32m%}:%),%{\e[0;31m%}:(%s)%b %# '
 
 # keychain ssh-keys
 eval $(keychain --eval --agents ssh id_rsa)
