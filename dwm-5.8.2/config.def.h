@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const char font[]            = "-*-montecarlo-*-*-*-*-11-*-*-*-*-*-*-*";
+static const char font[]            = "-*-proggyoptis-*-*-*-*-11-*-*-*-*-*-*-*";
 #define NUMCOLORS 3                     // need at least 3
 static const char colors[NUMCOLORS][ColLast][8] = {
 	// border   foreground  background
