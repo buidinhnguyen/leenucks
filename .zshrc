@@ -3,13 +3,15 @@
 # vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:ft=sh:
 ##
 # basics
-autoload -U compinit promptinit zmv url-quote-magic
+autoload -U compinit zmv url-quote-magic
 compinit
-promptinit
-prompt bart
+
+PROMPT=$'%n@%m %0(3c,%c,%~) %0(?,%{\e[0;32m%}:%),%{\e[0;31m%}:(%s)%b %# '
 
 # variables
-export PATH="${PATH}:${HOME}/bin"
+if [[ -z "$(echo ${PATH} | grep home)" ]] ; then
+  export PATH="${HOME}/bin:${PATH}"
+fi
 export BROWSER="firefox"
 export LANG="en_US.utf8"
 export LC_ALL="en_US.utf8"
@@ -53,7 +55,6 @@ extended_history share_history multios
 # load aliases, completions and prompt
 [[ -r ${XDG_CONFIG_HOME}/zsh/aliases    ]] && source "${XDG_CONFIG_HOME}/zsh/aliases"
 [[ -r ${XDG_CONFIG_HOME}/zsh/comp       ]] && source "${XDG_CONFIG_HOME}/zsh/comp"
-[[ -r ${XDG_CONFIG_HOME}/zsh/S60_prompt ]] && source "${XDG_CONFIG_HOME}/zsh/S60_prompt"
 
 # keychain ssh-keys
 eval $(keychain --eval --agents ssh id_rsa)

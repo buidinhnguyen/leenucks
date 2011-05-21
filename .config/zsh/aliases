@@ -51,6 +51,7 @@ alias ncm='ncmpcpp'
 alias gox='startx & vlock'
 alias feh='feh -g 1600x1000 -d -F' 
 alias ud="sudo lsof | grep 'DEL.*lib' | cut -f 1 -d ' ' | sort -u"
+alias torr="dtach -a /tmp/torr"
 
 # vim
 alias sv='sudo vim'
