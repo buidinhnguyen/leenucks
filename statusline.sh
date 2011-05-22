@@ -16,7 +16,7 @@ function net {
 	rcv_speed=$(printf "%1.2f\n" $(echo "scale=2; (${new_rcv} - ${old_rcv}) / ${kib}" | bc)) 
 	snd_speed=$(printf "%1.2f KiB/s\n" $(echo "scale=2; (${new_snd} - ${old_snd}) / ${kib}" | bc))
 
-	echo -e "[ ${rcv_speed}/${snd_speed} | "
+	echo -e "${rcv_speed}/${snd_speed} | "
 }
 
 # free diskspace in %
@@ -43,7 +43,7 @@ function music {
 	elif [[ "${mpcr}" -eq "1" ]] ; then
 		echo -n "[ ${mpcradio} | "
 	else
-		echo -n "[ ${mpc}| "
+		echo -n "[ ${mpc} | "
 	fi
 }
 

@@ -3,11 +3,11 @@
 case $1 in
 	up)
 		amixer -q -c 0 set Master 5+
-		xcowsay -t 3 "`amixer get Master | awk '/^  Mono:/ { print $4 }'`"
+		xcowsay -t 2 "`amixer get Master | awk '/^  Mono:/ { print $4 }'`"
 		;;
 	down)
 		amixer -q -c 0 set Master 5-
-		xcowsay -t 3 "`amixer get Master | awk '/^  Mono:/ { print $4 }'`"
+		xcowsay -t 2 "`amixer get Master | awk '/^  Mono:/ { print $4 }'`"
 		;;
 	mute)
 		volcheck=(`amixer -c 0 get Master | awk "/^  Mono:/"`)
