@@ -26,13 +26,6 @@ function disk {
 	echo "${root}/${home} | "
 }
 
-# mails
-function mail {
-	box=$(find ${HOME}/Mail/GMail/INBOX/new -type f | wc -l)
-	box2=$(find ${HOME}/Mail/personal/INBOX/new -type f | wc -l)
-	echo -e "${box}/${box2} | "
-}
-
 # mpd playing
 function music {
 	mpc=$(mpc current) 
@@ -76,6 +69,6 @@ function dm {
 }
 
 while true; do
-	xsetroot -name "$(music)$(net)$(disk)$(mail)$(up)$(dm)"
+	xsetroot -name "$(music)$(net)$(disk)$(up)$(dm)"
 	sleep 1
 done
