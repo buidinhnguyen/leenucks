@@ -2,6 +2,9 @@
 if [[ -z "$(pgrep mpd)" ]] ; then                   # mpd
   mpd ${XDG_CONFIG_HOME}/mpd/mpd.conf
 fi
+if [[ -z "$(pgrep googsystray)" ]] ; then           # Google systray (AUR package)
+  googsystray
+fi
 eval $(dbus-launch --sh-syntax --exit-with-session) # dbus
 eval $(cat ${HOME}/.fehbg)                          # wallpaper
 xsetroot -cursor_name left_ptr                      # cursor
