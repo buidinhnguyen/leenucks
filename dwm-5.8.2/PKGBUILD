@@ -11,6 +11,7 @@ source=(http://dl.suckless.org/dwm/dwm-${pkgver}.tar.gz \
         dwm-${pkgver}-focusonclick.diff \
         dwm-${pkgver}-scratchpad_stay.diff \
         dwm-${pkgver}-statuscolors.diff \
+        dwm-${pkgver}-systray.diff \
         dwm-${pkgver}-bstack.diff )
 . md5sums
 build() {
@@ -21,8 +22,9 @@ build() {
   patch -p1 < ../dwm-${pkgver}-statuscolors.diff
   patch -p1 < ../dwm-${pkgver}-focusonclick.diff
   patch -p1 < ../dwm-${pkgver}-scratchpad_stay.diff
+  patch -p1 < ../dwm-${pkgver}-systray.diff
   patch -p1 < ../dwm-${pkgver}-bstack.diff
-  
+
   sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
   sed -i 's/CFLAGS =/CFLAGS +=/g' config.mk
   sed -i 's/LDFLAGS =/LDFLAGS +=/g' config.mk
