@@ -3,7 +3,6 @@ Patches for dwm-5.8.2, they need to be applied in this order:
 	1. statuscolors
 	2. focusonclick
 	3. scratchpad_stay
-	4. systray
 	5. bstack
 
 config.def.h needs to be used for dwm to compile

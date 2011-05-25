@@ -14,11 +14,9 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 static const Bool focusonclick      = True;     /* Change focus only on click */
-static const Bool systray_enable    = True;     /* Enabling systray */
-static const int  systray_spacing   = 1;        /* Systray spacing */
 
 /* tagging */
-static const char *tags[] = { "1/main", "2/web", "3/rss", "4/foo" };
+static const char *tags[] = { "1/main", "2/web", "3/ssh", "4/foo" };
 
 static const Rule rules[] = {
 	/* class            instance    title          tags mask     isfloating   monitor */
