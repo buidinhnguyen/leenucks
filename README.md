@@ -3,8 +3,6 @@
 I'm kind of a paranoid guy and I don't like having my passwords written down in any local configuration file.
 So I wrote this little bash script using Googles experimental implementation of OAuth 2.0.
 
-Maybe <del>a bigger</del> an annoying project
-
 Examples can be found in the <b>"scripts"</b> directory
 
 ### Requirements ###
