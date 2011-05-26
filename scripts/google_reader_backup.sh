@@ -1,8 +1,10 @@
 #!/bin/bash
 #
 # Requirements:
-# working oauth2-token for google account
 # curl
+#
+# TODO:
+# Rewrite 
 # 
 
 DT=$(date +"%Y%m%d")
