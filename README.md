@@ -1,8 +1,8 @@
-# Googles OAuth2 using bash #
+## Googles OAuth2 using bash ##
 
 Maybe a bigger project ~_~
 
-## TODO ##
+### TODO ###
 
 * Google_OAuth2.sh
 * Scripts
