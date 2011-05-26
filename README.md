@@ -6,7 +6,8 @@ Examples can be found in the <b>"scripts"</b> directory
 
 ### TODO ###
 
-???
+* rewrite using only curl to get the response code for authorizing the program
+* multiple accounts (?)
 
 ### License ###
 

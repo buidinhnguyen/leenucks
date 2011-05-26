@@ -15,7 +15,8 @@
 #
 #
 # TODO:
-#	rewrite using only curl for authentication and no xdg-open
+#	rewrite using only curl to get the response code for authorizing the program
+#	multiple accounts (?)
 #
 
 ## hardcoded strings
@@ -36,14 +37,14 @@ CLIENT_SECRET="nMn36cHLp_ty20QoG0EuVPfY"
 
 ## authorize the application
 # look for scopes in Google APIs documentation
-# this example: Google Reader API access && gmail unread feed access
+# this example: Access to Google Reader export, Google Reader API && gmail unread feed
 ### change it accordingly and don't forget to include %20 when using multiple scopes ###
 token_auth() {
 	xdg-open "https://accounts.google.com/o/oauth2/auth?\
 	client_id=${CLIENT_ID}&\
 	redirect_uri=urn:ietf:wg:oauth:2.0:oob&\
 	response_type=code&\
-	scope=https://www.google.com/reader/api/%20https://mail.google.com/mail/feed/atom"
+	scope=https://www.google.com/reader/subscription/export%20https://www.google.com/reader/api/%20https://mail.google.com/mail/feed/atom"
 }
 
 ## get the first tokens and grant the access
