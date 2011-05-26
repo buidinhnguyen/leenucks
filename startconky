@@ -1,0 +1,4 @@
+#!/bin/bash
+
+conky -c ${XDG_CONFIG_HOME}/conky/conkyrc | while read -r; do xsetroot -name "$REPLY"; done &
+
