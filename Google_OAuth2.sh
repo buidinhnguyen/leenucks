@@ -11,10 +11,10 @@
 #	xdg-open
 #	grep
 #	sed
-
+#	ps
+#
 #
 # TODO:
-#	Functions
 #	if-else-statements
 #	rewrite using only curl for authentication and no xdg-open
 #
@@ -22,49 +22,55 @@
 ## hardcoded strings
 DATADIR="${XDG_DATA_HOME:-$HOME/.local/share}/google_oauth2"
 CONFDIR="${XDG_CONFIG_HOME:-$HOME/.config}/google_oauth2"
+CONFIG="${CONFDIR}/ggloauthrc"
 # register your client in Google APIs console (http://code.google.com/apis/console#access) and replace it
 CLIENT_ID="560131576595.apps.googleusercontent.com"
 CLIENT_SECRET="nMn36cHLp_ty20QoG0EuVPfY"
 
-# test fo variable REFRESH_TOKEN && needed directories
-[[ -e "${CONFDIR}/refresh_token" ]] && REFRESH_TOKEN="$(awk '/^refresh/ { print $2 }' ${CONFDIR}/refresh_token)"
+# test for needed directories
 [[ ! -d "${DATADIR}" ]] && mkdir "${DATADIR}"
 [[ ! -d "${CONFDIR}" ]] && mkdir "${CONFDIR}"
 
+# configfile exists? get variables
+[[ -e "${CONFIG}" ]] && AUTH="$(awk '/^authorization/ { print $2 }' ${CONFIG})"
+[[ -e "${CONFIG}" ]] && REFRESH_TOKEN="$(awk '/^refresh/ { print $2 }' ${CONFIG})"
+
 ## authorize the application
 # look for scopes in Google APIs documentation
+# this example: Google Reader API access && gmail unread feed access
+### change it accordingly and don't forget to include %20 when using multiple scopes ###
 token_auth() {
 	xdg-open "https://accounts.google.com/o/oauth2/auth?\
 	client_id=${CLIENT_ID}&\
 	redirect_uri=urn:ietf:wg:oauth:2.0:oob&\
 	response_type=code&\
-	scope="
+	scope=https://www.google.com/reader/api/%20https://mail.google.com/mail/feed/atom"
 }
 
-## get the tokens
+## get the first tokens and grant the access
 token_get() {
 	curl -s https://accounts.google.com/o/oauth2/token \
 	-d "client_id=${CLIENT_ID}" \
 	-d "client_secret=${CLIENT_SECRET}" \
 	-d "code=${RESPONSE_CODE}" \
-	-d "redirect_uri=urn:ietf:wg:oauth:2.0:oob" |\
+	-d "redirect_uri=urn:ietf:wg:oauth:2.0:oob" \
+	-d "grant_type=authorization_code" |\
 	tr ',' '\n' |\
-	grep -v expires |\
 	grep -v type |\
 	sed -e 's#"##g;s#{##g;s#}##g;s#%##g;s#:# #g' \
 	> "${CONFDIR}/tokens"
 
-	if [[ -e "${DATADIR}/access_token" ]] ; then
-		rm "${DATADIR}/access_token"
-	fi
+	[[ -e "${DATADIR}/access_token" ]] && rm "${DATADIR}/access_token"
 
-	grep "access" "${CONFDIR}/tokens" > "${DATADIR}/access_token"
+	grep -A2 "access" "${CONFDIR}/tokens" > "${DATADIR}/access_token"
 	chmod 0600 "${DATADIR}/access_token"
 
-	grep "refresh" "${CONFDIR}/tokens" > "${CONFDIR}/refresh_token"
-	chmod 0600 "${CONFDIR}/refresh_token"
+	grep "refresh" "${CONFDIR}/tokens" > "${CONFIG}"
+	chmod 0600 "${CONFIG}"
 
 	rm "${CONFDIR}/tokens"
+
+	echo "authorization_granted yes" >> "${CONFIG}"
 }
 
 ## delete the old access token and refresh your access token
@@ -77,18 +83,25 @@ token_refresh() {
 	-d "refresh_token=${REFRESH_TOKEN}" \
 	-d "grant_type=refresh_token" |\
 	tr ',' '\n' |\
-	grep -v expires |\
-	grep -v type |\
 	sed -e 's#"##g;s#{##g;s#}##g;s#%##g;s#:# #g' \
 	> "${DATADIR}/access_token"
 }
 
+## Start the program
+
 ## rewrite using plain-curl ~
 # Are we using X?
-#X=$(ps --no-headers -C X)
-#[[ -z "${X}" ]] && echo "Need X server for now, exiting" && exit 1
+X=$(ps --no-headers -C X)
+[[ -z "${X}" ]] && echo "Need X server for now, exiting" && exit 1
 
-#token_auth
-# let the user copy the resulting authorization code and use that
-#token_get
+# does a configfile already exist? if no, then get authorized and get the tokens
+if [[ ! -e "${CONFIG}" ]] ; then
+	token_auth
+	echo -e "Copy and paste the authorization code and press Enter: \n"
+	read -r RESPONSE_CODE
+	token_get
+	echo "access_token:  ${DATADIR}/access_token"
+  echo "refresh_token: ${CONFIG}"
+fi
+# 
 #token_refresh
