@@ -10,6 +10,8 @@
 # curl
 #
 
+# PATH for crontab
+PATH="/home/uh/bin:${PATH}"
 # source Google_OAuth2.sh
 Google_OAuth2_sh=$(which Google_OAuth2.sh)
 (( $? != 0 )) && echo "Unable to locate Google_OAuth2.sh. Put it in PATH." && exit 1
