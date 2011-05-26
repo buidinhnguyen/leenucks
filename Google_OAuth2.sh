@@ -62,7 +62,7 @@ token_get() {
 
 	[[ -e "${DATADIR}/access_token" ]] && rm "${DATADIR}/access_token"
 
-	grep -A2 "access" "${CONFDIR}/tokens" > "${DATADIR}/access_token"
+	grep -A1 "access" "${CONFDIR}/tokens" > "${DATADIR}/access_token"
 	chmod 0600 "${DATADIR}/access_token"
 
 	grep "refresh" "${CONFDIR}/tokens" > "${CONFIG}"
@@ -106,4 +106,4 @@ fi
 # access token is expired? get a new one
 EXPIRY=$(awk '/^exp/ { print $2 }' ${DATADIR}/access_token )
 FILEAGE=$(($(date +%s) - $(stat -c '%Y' "${DATADIR}/access_token")))
-(( "${FILEAGE}" > "${EXPIRY}" )) && refresh_token
+(( "${FILEAGE}" > "${EXPIRY}" )) && token_refresh
