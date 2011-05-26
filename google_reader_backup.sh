@@ -17,5 +17,5 @@ DT=$(date +"%Y%m%d")
 OAUTH_TOKEN="$(awk '/^access/ { print $2 }' ${DATADIR}/access_token )"
 BACKUP_FILE="${HOME}/files/backups/Subscriptions-${DT}.opml"
 
-curl -s -o "${BACKUP_FILE}" -H "Authorization: OAuth ${OAUTH_TOKEN}" https://www.google.com/reader/subscriptions/export
-
+# get the reader subscriptions as an opml file and save them in ~/files/backups as Subscriptions-YYYYMMDD.opml
+curl -s -o "${BACKUP_FILE}" -H "Authorization: OAuth ${OAUTH_TOKEN}" "https://www.google.com/reader/subscriptions/export"
