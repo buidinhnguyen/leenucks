@@ -1,4 +1,0 @@
-google-reader: 
-curl -s -H "Authorization: OAuth ${OAUTH_TOKEN}" "https://www.google.com/reader/api/0/unread-count?allcomments=false&output=json" | tr '{' '\n' | grep 'id.:.feed/' | sed 's/.*"count":\([0-9]*\),".*/\1/' | grep -E "^[0-9]+$" | tr '\n' '+' | sed 's/\(.*\)+/\1\n/' | bc
-google-mails:
-curl -s -H "Authorization: OAuth ${OAUTH_TOKEN}" "https://mail.google.com/mail/feed/atom" | sed -e 's/<\// /g;s/>/ /g' | awk '/^<fullcount/ { print $2 }'
