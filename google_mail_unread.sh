@@ -9,4 +9,8 @@
 # Requirements:
 # curl
 
+source Google_OAuth2.sh
+
+OAUTH_TOKEN="$(awk '/^access/ { print $2 }' ${DATADIR}/access_token )"
+
 curl -s -H "Authorization: OAuth ${OAUTH_TOKEN}" "https://mail.google.com/mail/feed/atom" | sed -e 's/<\// /g;s/>/ /g' | awk '/^<fullcount/ { print $2 }'
