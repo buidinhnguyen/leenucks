@@ -1,0 +1,4 @@
+#!/bin/bash
+
+[[ -z "$(pgrep mpd)" ]] && mpd ${XDG_CONFIG_HOME}/mpd/mpd.conf 
+
