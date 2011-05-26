@@ -10,7 +10,7 @@
 # curl
 #
 
-source Google_OAuth2.sh
+source "../Google_OAuth2.sh"
 
 DT=$(date +"%Y%m%d")
 
@@ -19,3 +19,4 @@ BACKUP_FILE="${HOME}/files/backups/Subscriptions-${DT}.opml"
 
 # get the reader subscriptions as an opml file and save them in ~/files/backups as Subscriptions-YYYYMMDD.opml
 curl -s -o "${BACKUP_FILE}" -H "Authorization: OAuth ${OAUTH_TOKEN}" "https://www.google.com/reader/subscriptions/export"
+

@@ -2,10 +2,11 @@
 
 Maybe <del>a bigger</del> an annoying project ~_~
 
+Examples can be found in the <b>"scripts"</b> directory
+
 ### TODO ###
 
 * Google_OAuth2.sh
-* Scripts
 
 ### License ###
 
