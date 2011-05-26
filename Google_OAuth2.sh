@@ -16,7 +16,7 @@
 # TODO:
 #	Functions
 #	if-else-statements
-#	rewrite using only curl for authentication
+#	rewrite using only curl for authentication and no xdg-open
 #
 
 ## hardcoded strings
@@ -26,17 +26,10 @@ CONFDIR="${XDG_CONFIG_HOME:-$HOME/.config}/google_oauth2"
 CLIENT_ID="560131576595.apps.googleusercontent.com"
 CLIENT_SECRET="nMn36cHLp_ty20QoG0EuVPfY"
 
-if [[ -e "${CONFDIR}/refresh_token" ]] ; then
-	REFRESH_TOKEN="$(awk '/^refresh/ { print $2 }' ${CONFDIR}/refresh_token)"
-fi
-
-if [[ ! -d "${DATADIR}" ]] ; then
-	mkdir "${DATADIR}"
-fi
-
-if [[ ! -d "${CONFDIR}" ]] ; then
-	mkdir "${CONFDIR}"
-fi
+# test fo variable REFRESH_TOKEN && needed directories
+[[ -e "${CONFDIR}/refresh_token" ]] && REFRESH_TOKEN="$(awk '/^refresh/ { print $2 }' ${CONFDIR}/refresh_token)"
+[[ ! -d "${DATADIR}" ]] && mkdir "${DATADIR}"
+[[ ! -d "${CONFDIR}" ]] && mkdir "${CONFDIR}"
 
 ## authorize the application
 # look for scopes in Google APIs documentation
@@ -76,9 +69,7 @@ token_get() {
 
 ## delete the old access token and refresh your access token
 token_refresh() {
-	if [[ -e "${DATADIR}/access_token" ]] ; then
-		rm "${DATADIR}/access_token"
-	fi
+	[[ -e "${DATADIR}/access_token" ]] && rm "${DATADIR}/access_token"
 
 	curl -s https://accounts.google.com/o/oauth2/token \
 	-d "client_id=${CLIENT_ID}" \
@@ -95,12 +86,7 @@ token_refresh() {
 ## rewrite using plain-curl ~
 # Are we using X?
 X=$(ps --no-headers -C X)
-if [[ -z "${X}" ]] ; then
-	echo "No X Server running"
-	echo "Me needs one to open a browser using xdg-open!"
-	exit 1
-fi
-
+[[ -z "${X}" ]] && echo "Need X server for now, exiting" && exit 1
 
 #token_auth
 # let the user copy the resulting authorization code and use that
