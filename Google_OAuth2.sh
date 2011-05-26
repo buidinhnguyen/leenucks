@@ -15,7 +15,6 @@
 #
 #
 # TODO:
-#	if-else-statements
 #	rewrite using only curl for authentication and no xdg-open
 #
 
@@ -88,7 +87,6 @@ token_refresh() {
 }
 
 ## Start the program
-
 ## rewrite using plain-curl ~
 # Are we using X?
 X=$(ps --no-headers -C X)
@@ -103,5 +101,8 @@ if [[ ! -e "${CONFIG}" ]] ; then
 	echo "access_token:  ${DATADIR}/access_token"
   echo "refresh_token: ${CONFIG}"
 fi
-# 
-#token_refresh
+
+# access token is expired? get a new one
+EXPIRY=$(awk '/^exp/ { print $2 }' ${DATADIR}/access_token )
+FILEAGE=$(($(date +%s) - $(stat -c '%Y' "${DATADIR}/access_token")))
+(( "${FILEAGE}" > "${EXPIRY}" )) && refresh_token
