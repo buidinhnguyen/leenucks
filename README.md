@@ -4,6 +4,17 @@ Maybe <del>a bigger</del> an annoying project
 
 Examples can be found in the <b>"scripts"</b> directory
 
+### Requirements ###
+
+	awk
+	bc
+	curl
+	grep
+	ps
+	sed
+	tr
+	xdg-open
+
 ### TODO ###
 
 * rewrite using only curl to get the response code for authorizing the program
