@@ -1,12 +1,12 @@
 ## Googles OAuth2 using bash ##
 
-Maybe <del>a bigger</del> an annoying project ~_~
+Maybe <del>a bigger</del> an annoying project
 
 Examples can be found in the <b>"scripts"</b> directory
 
 ### TODO ###
 
-* Google_OAuth2.sh
+???
 
 ### License ###
 
