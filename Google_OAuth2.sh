@@ -85,8 +85,8 @@ token_refresh() {
 
 ## rewrite using plain-curl ~
 # Are we using X?
-X=$(ps --no-headers -C X)
-[[ -z "${X}" ]] && echo "Need X server for now, exiting" && exit 1
+#X=$(ps --no-headers -C X)
+#[[ -z "${X}" ]] && echo "Need X server for now, exiting" && exit 1
 
 #token_auth
 # let the user copy the resulting authorization code and use that

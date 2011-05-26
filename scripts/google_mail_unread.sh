@@ -9,7 +9,7 @@
 # Requirements:
 # curl
 
-source "../Google_OAuth2.sh"
+source "Google_OAuth2.sh"
 
 OAUTH_TOKEN="$(awk '/^access/ { print $2 }' ${DATADIR}/access_token )"
 

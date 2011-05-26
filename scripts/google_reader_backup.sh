@@ -10,7 +10,7 @@
 # curl
 #
 
-source "../Google_OAuth2.sh"
+source "Google_OAuth2.sh"
 
 DT=$(date +"%Y%m%d")
 
