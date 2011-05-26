@@ -1,6 +1,6 @@
 ## Googles OAuth2 using bash ##
 
-Maybe a bigger project ~_~
+Maybe <del>a bigger</del> an annoying project ~_~
 
 ### TODO ###
 
