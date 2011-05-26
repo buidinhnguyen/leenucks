@@ -6,14 +6,14 @@ Examples can be found in the <b>"scripts"</b> directory
 
 ### Requirements ###
 
-	awk
-	bc
-	curl
-	grep
-	ps
-	sed
-	tr
-	xdg-open
+* awk
+* bc
+* curl
+* grep
+* ps
+* sed
+* tr
+* xdg-open
 
 ### TODO ###
 
