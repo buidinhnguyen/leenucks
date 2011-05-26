@@ -12,6 +12,12 @@
 #	grep
 #	sed
 
+#
+# TODO:
+#	Functions
+#	if-else-fi-statements
+#
+
 ## hardcoded strings
 DATADIR="${XDG_DATA_HOME:-$HOME/.local/share}/google_oauth2"
 CONFDIR="${XDG_CONFIG_HOME:-$HOME/.config}/google_oauth2"
