@@ -44,7 +44,7 @@ token_auth() {
 	client_id=${CLIENT_ID}&\
 	redirect_uri=urn:ietf:wg:oauth:2.0:oob&\
 	response_type=code&\
-	scope=https://www.google.com/reader/subscription/export%20https://www.google.com/reader/api/%20https://mail.google.com/mail/feed/atom"
+	scope=https://www.google.com/reader/subscriptions/export%20https://www.google.com/reader/api/%20https://mail.google.com/mail/feed/atom"
 }
 
 ## get the first tokens and grant the access
@@ -96,8 +96,8 @@ X=$(ps --no-headers -C X)
 # does a configfile already exist? if no, then get authorized and get the tokens
 if [[ ! -e "${CONFIG}" ]] ; then
 	token_auth
-	echo -e "Copy and paste the authorization code and press Enter: \n"
-	read -r RESPONSE_CODE
+	echo -e "Copy and paste the authorization code and press Enter:"
+	read -rs RESPONSE_CODE
 	token_get
 	echo "access_token:  ${DATADIR}/access_token"
   echo "refresh_token: ${CONFIG}"
