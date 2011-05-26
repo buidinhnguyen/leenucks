@@ -16,6 +16,7 @@
 # TODO:
 #	Functions
 #	if-else-statements
+#	rewrite using only curl for authentication
 #
 
 ## hardcoded strings
@@ -38,17 +39,14 @@ if [[ ! -d "${CONFDIR}" ]] ; then
 fi
 
 ## authorize the application
+# look for scopes in Google APIs documentation
 token_auth() {
 	xdg-open "https://accounts.google.com/o/oauth2/auth?\
 	client_id=${CLIENT_ID}&\
 	redirect_uri=urn:ietf:wg:oauth:2.0:oob&\
 	response_type=code&\
-	scope="                                                 # look for scopes in Google APIs documentation
+	scope="
 }
-
-#
-# let the user copy the resulting authorization code and use that
-#
 
 ## get the tokens
 token_get() {
@@ -94,4 +92,17 @@ token_refresh() {
 	> "${DATADIR}/access_token"
 }
 
+## rewrite using plain-curl ~
+# Are we using X?
+X=$(ps --no-headers -C X)
+if [[ -z "${X}" ]] ; then
+	echo "No X Server running"
+	echo "Me needs one to open a browser using xdg-open!"
+	exit 1
+fi
+
+
+#token_auth
+# let the user copy the resulting authorization code and use that
+#token_get
 #token_refresh
