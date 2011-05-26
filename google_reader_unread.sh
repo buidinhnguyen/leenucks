@@ -13,6 +13,15 @@ source Google_OAuth2.sh
 
 OAUTH_TOKEN="$(awk '/^access/ { print $2 }' ${DATADIR}/access_token )"
 
-# get the unread count for Google Reader with magic
-curl -s -H "Authorization: OAuth ${OAUTH_TOKEN}" "https://www.google.com/reader/api/0/unread-count?allcomments=false&output=json" | tr -d '\n' | tr '{' '\n' | grep 'id.:.feed/' | sed 's/.*"count":\([0-9]*\),".*/\1/' | grep "^[0-9]*$" | grep -v "^$" | tr '\n' '+' | sed 's/\(.*\)+/\1\n/' | bc 
+# get the unread count for Google Reader using magic
+curl -s -H "Authorization: OAuth ${OAUTH_TOKEN}" "https://www.google.com/reader/api/0/unread-count?allcomments=false&output=json" |\
+tr -d '\n' |\
+tr '{' '\n' |\
+grep 'id.:.feed/' |\
+sed 's/.*"count":\([0-9]*\),".*/\1/' |\
+grep "^[0-9]*$" |\
+grep -v "^$" |\
+tr '\n' '+' |\
+sed 's/\(.*\)+/\1\n/' |\
+bc 
 
