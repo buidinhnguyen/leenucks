@@ -1,0 +1,27 @@
+diff -up oldsrc/dwm.c newsrc/dwm.c
+--- oldsrc/dwm.c	2011-05-19 18:14:22.064860652 +0200
++++ newsrc/dwm.c	2011-05-19 18:15:12.980638188 +0200
+@@ -826,14 +826,16 @@ enternotify(XEvent *e) {
+ 
+ 	if((ev->mode != NotifyNormal || ev->detail == NotifyInferior) && ev->window != root)
+ 		return;
+-	if((m = wintomon(ev->window)) && m != selmon) {
+-		unfocus(selmon->sel, True);
+-		selmon = m;
++	if (!focusonclick) {
++		if((m = wintomon(ev->window)) && m != selmon) {
++			unfocus(selmon->sel, False);
++			selmon = m;
++		}
++		if((c = wintoclient(ev->window)))
++			focus(c);
++		else
++			focus(NULL);
+ 	}
+-	if((c = wintoclient(ev->window)))
+-		focus(c);
+-	else
+-		focus(NULL);
+ }
+ 
+ void

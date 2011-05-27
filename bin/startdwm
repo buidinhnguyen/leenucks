@@ -1,0 +1,4 @@
+#!/bin/sh
+while true; do
+	dwm 2> ~/.dwm.log     # log stderror to a file
+done

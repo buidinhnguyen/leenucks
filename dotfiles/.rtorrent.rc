@@ -1,0 +1,44 @@
+# peers
+min_peers = 40
+max_peers = 100
+min_peers_seed = 10
+max_peers_seed = 50
+
+# rate
+download_rate = 750
+upload_rate = 30
+
+# session directory
+session = ~/tmp
+
+# port range
+port_range = 43245-43248
+
+# no dht/udp-trackers
+dht = disable
+use_udp_trackers = no
+
+# hashing
+check_hash = yes
+hash_read_ahead = 8
+hash_max_tries = 5
+hash_interval = 10
+
+# encryption
+encryption = allow_incoming,enable_retry,prefer_plaintext
+
+# peer exchange
+peer_exchange = yes
+
+# stop on low diskspace
+schedule = low_diskspace,5,60,close_low_diskspace=100M
+
+# dl directory
+directory = ~/tmp/dl
+
+# watch directory for new torrents and stop those that have been deleted
+schedule = watch_directory,5,5,load_start=~/tmp/tr/*.torrent
+schedule = untied_directory,10,10,close_untied=
+
+# move completed torrents 
+system.method.set_key = event.download.finished,move_complete,"execute=mv,-u,$d.get_base_path=,~/tmp/anime/;d.set_directory=~/tmp/anime/"
