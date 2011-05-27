@@ -10,9 +10,9 @@ mpd_port 6600
 
 TEXT
 
-[ ${if_mpd_playing}${if_match "${mpd_smart}" >= "30"}${scroll 30 3 ${mpd_smart}}${else}${mpd_smart}${endif}${endif}${if_match "${mpd_status}" == "Stopped"}MPD stopped${endif} |\
+[ ${if_mpd_playing}${if_match "${mpd_smart}" >= "50"}${scroll 50 3 ${mpd_smart}}${else}${mpd_smart}${endif}${endif}${if_match "${mpd_status}" == "Stopped"}MPD stopped${endif} |\
  ${execpi 60 google_mail_unread.sh}/${new_mails /home/uh/Mail/personal/INBOX/} |\
- ${if_match "${execpi 60 google_reader_unread.sh}" == ""}0${else}${execpi 60 google_reader_unread.sh}${endif} |\
+ ${if_match "${execpi 180 google_reader_unread.sh}" <= "25"}0${else}${execpi 180 google_reader_unread.sh}${endif} |\
  ${downspeedf eth0}/${upspeedf eth0} KiB/s |\
  ${fs_free_perc /}%/${fs_free_perc /home}% |\
  ${uptime_short} |\
