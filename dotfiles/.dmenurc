@@ -1,0 +1,4 @@
+# makes dmenu identical across all scripts by sourcing this file
+# aur/dmenu-xft required for xft fonts
+
+DMENU='dmenu -i -fn Proggyoptis-8 -nb #f0f0f0 -nf #757575 -sb #6D2857 -sf #f0f0f0'

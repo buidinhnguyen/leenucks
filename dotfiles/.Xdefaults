@@ -1,0 +1,59 @@
+! vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:ft=xdefaults:
+
+! Cursor theme
+Xcursor.theme: CG
+
+! Colors
+#include "/home/uh/.config/xcolors/grey.xcolors"
+
+! Fonts
+Xft.antialias: true
+Xft.hinting:   true
+Xft.rgba:      rgb
+Xft.hintstyle: hintslight
+
+! Urxvt
+URxvt*font:        -*-proggyoptis-medium-r-normal-*-10-*-*-*-*-*-*-*
+URxvt*boldFont:    -*-proggyoptis-medium-r-normal-*-10-*-*-*-*-*-*-*
+
+URxvt*scrollBar:       false
+URxvt*jumpScroll:      true
+URxvt*skipScroll:      true
+URxvt*secondaryScroll: true
+URxvt*visualBell:      false
+
+URxvt*depth:       24
+URxvt*buffered:    true
+URxvt*transparent: false
+
+URxvt*intensityStyles: true
+URxvt*urgentOnBell:    true
+
+! URLs in rxvt, keyboard-select and copy without mouse
+URxvt.perl-ext-common:  url-select,keyboard-select
+URxvt.keysym.M-u:       perl:url-select:select_next
+URxvt.keysym.M-s:       perl:keyboard-select:search
+URxvt.keysym.M-Escape:  perl:keyboard-select:activate
+URxvt.urlLauncher:      /usr/bin/firefox
+URxvt.perl-ext:         default
+URxvt.underlineURLs:    true
+
+! Xterm
+xterm*Geometry:   100x60
+xterm*foreground: #111111
+xterm*background: #303030
+xterm*font:       -*-terminus-medium-*-*-*-12-*-*-*-*-*-*-*
+xterm*boldFont:   -*-terminus-medium-*-*-*-12-*-*-*-*-*-*-*
+xterm*scrollBar:  false
+xterm*termName:   xterm-256color
+
+! Xmessage
+Xmessage*font:                  -xos4-terminus-*-*-*-*-*-*-*-*-*-*-iso8859-2
+Xmessage*background:            #111111
+Xmessage*foreground:            #909090
+Xmessage*form.*.shapeStyle:     rectangle
+Xmessage*Scrollbar.width:       2
+Xmessage*Scrollbar.borderWidth: 2
+Xmessage*Buttons:               Quit
+Xmessage*defaultButton:         Quit
+

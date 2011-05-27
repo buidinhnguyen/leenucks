@@ -1,0 +1,43 @@
+# Derived from: ataualpa.altervista.org 
+
+# text colors - general functions
+color normal     black          default
+color status     white          blue
+color search     brightblue     red
+color message    brightblue     default
+color error      brightred      default
+color markers    brightred      default
+
+# text colors - message index menu and attachment menu
+color indicator  brightwhite    blue
+color tree       brightred      default
+color index      blue           default  ~F
+color index      blue           default  ~N
+color index      magenta        default  ~T
+color index      blue           default  ~U
+color index      cyan           default  ~D
+
+color hdrdefault blue           default
+color bold       green          default
+color underline  yellow         default
+color attachment blue           cyan
+color signature  red            default
+color tilde      blue           default
+color quoted     red            default
+color quoted1    green          default
+color quoted2    magenta        default
+color quoted3    yellow         default
+color quoted4    red            default
+color quoted5    red            default
+color quoted6    red            default
+color quoted7    red            default
+color quoted8    red            default
+color quoted9    red            default
+color body       brightgreen    default "(https?|ftp|gopher|finger)://([^"'"'"' \t\r\n)>.,!?&]\
+|[.,!?][^"'"'"' \t\r\n)>.,!?&]|&([^g]|$)|&g([^t]|$)|&gt([^;]|$))+"
+color body       brightred      default  "[-a-zA-Z_0-9.+]+@[-a-zA-Z_0-9.]+"
+color body       red            default  "(^| )\\*[-a-zA-Z0-9*]+\\*[,.?]?[ \n]"
+color body       green          default  "(^| )_[-a-zA-Z0-9_]+_[,.?]?[ \n]"
+color body       yellow         default  "[*/_]+ *[- &[:alnum:]]+ *[*/_]+"
+
+# vim: syntax=muttrc

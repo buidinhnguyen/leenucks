@@ -1,0 +1,29 @@
+! greyish theme
+*foreground:#080808
+*background:#d0d0d0
+
+!black
+*color0:  #666666
+*color8:  #000000
+!red
+*color1:  #df0000
+*color9:  #ff005f
+!green
+*color2:  #008700
+*color10: #00af5f
+!yellow
+*color3:  #df8700
+*color11: #dfaf00
+!blue
+*color4:  #000080
+*color12: #0087df
+!magenta
+*color5:  #af00ff
+*color13: #df00ff
+!cyan
+*color6:  #0087ff
+*color14: #00dfff
+!white
+*color7:  #808080
+*color15: #ffffff
+
