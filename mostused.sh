@@ -1,9 +1,9 @@
  #!/bin/bash
 #
 # most used apps via dmenu
-#
-###
+
 PATH=${PATH}:${HOME}/bin
+
 apps="a: firefox\nr: chromium\ns: albumbler\nt: gimp\nd: leave.sh\nq: sshot.sh\nw: kb_switch.sh\nf: libreoffice\np: gajim\ng: gvba\nz: virtualbox\nx: GMail\nc: Google Reader"
 
 if [[ -f "$HOME/.dmenurc" ]]; then

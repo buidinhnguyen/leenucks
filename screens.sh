@@ -1,8 +1,7 @@
 #!/bin/bash
 #
 # screens via dmenu
-#
-###
+
 screens="a: torrent+mutt\nr:irssi+newsbeuter"
 
 if [[ -f "$HOME/.dmenurc" ]]; then

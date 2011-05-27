@@ -1,4 +1,5 @@
 #!/bin/bash
+
 TMX="$(pgrep tmux)"
 
 if [[ -z "${TMX}" ]] ; then

@@ -4,7 +4,8 @@
 #
 # ~/.playlist:
 #   touch ~/.playlist
-#   find ${MUSIC-DIRECTORY} -iname '*.mp3' -o -iname '*.ogg' | grep "${DESIRED_BAND}" or "${DESIRED_SONG}" >> ~/.playlist
+#   find ${MUSIC-DIRECTORY} -iname '*.mp3' -o -iname '*.ogg' |\
+#   grep "${DESIRED_BAND}" or "${DESIRED_SONG}" >> ~/.playlist
 #
 # Dependencies:
 #  - amixer
@@ -13,11 +14,10 @@
 #  - mpd
 #  - mplayer
 #  - xterm
-#
 
-MPC=`which mpc`
-AMIXER=`which amixer`
-BC="`which bc` -l"
+MPC=$(which mpc)
+AMIXER=$(which amixer)
+BC="$(which bc) -l"
 MPDRUNFILE="/var/run/mpd"
 
 backup_wakeup() {

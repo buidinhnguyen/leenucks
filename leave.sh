@@ -10,15 +10,6 @@ kill_apps() {
 	done < <(wmctrl -l | awk '{print $1}')
 }
 
-choice_by_zenity() {
-	choice=$(zenity --title="Logout $HOSTNAME" \
- 	                --text="Logout $HOSTNAME:" \
-	                --list --radiolist \
-	                --hide-column=3 --print-column=3 \
-	                --column='' --column='' --column='' \
-	                TRUE Logout 0 FALSE Reboot 1 FALSE Shutdown 2)
-}
-
 choice_by_dmenu() {
 	if [[ -f "$HOME/.dmenurc" ]]; then
 		. "$HOME/.dmenurc"
@@ -31,7 +22,6 @@ choice_by_dmenu() {
 
 [[ -z "$DISPLAY" ]] && exit 1
 
-#choice_by_zenity
 choice_by_dmenu
 
 [[ -z "$choice" ]] && exit 1
@@ -41,7 +31,7 @@ kill_apps
 
 # execute the choice in background
 case "$choice" in
-	a) pkill X &              ;;
-	r) sudo shutdown -r now & ;;
-	s) sudo shutdown -h now & ;;
+	a) pkill X &     ;;
+	r) sudo init 6 & ;;
+	s) sudo init 0 & ;;
 esac

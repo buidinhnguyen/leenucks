@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # check for permissions
 if [[ "${UID}" -ne "0" ]] ; then
 	echo "Switch user to root"
