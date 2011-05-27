@@ -2,7 +2,6 @@
 "-----------------------------------------------
 " plugins/colorschemes used
 "-----------------------------------------------
-" 
 " secure modelines:      http://github.com/ciaranm/securemodelines
 " calendar:              http://www.vim.org/scripts/script.php?script_id=52
 " cmdline complete:      http://www.vim.org/scripts/script.php?script_id=2222
