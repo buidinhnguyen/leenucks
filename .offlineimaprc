@@ -1,19 +1,12 @@
 [general]
 ui = ttyui
-accounts = GMail,personal
+accounts = GMail
 
 [Account GMail]
 localrepository = Gmail-Local
 remoterepository = Gmail-Remote
 maxsyncaccounts = 3
 maxconnections = 3
-
-[Account personal]
-localrepository =  personal-local
-remoterepository = personal-remote
-maxsyncaccounts = 3
-maxconnections = 3
-postsynchook = ~/bin/new_mail
 
 [Repository Gmail-Local]
 type = Maildir
@@ -27,18 +20,5 @@ sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 ssl = yes
 realdelete = no
 nametrans = lambda folder: re.sub('^inbox$', 'INBOX', re.sub(' +', '_', re.sub(r'.*/(.*)$', r'\1', folder).lower()))
-
-[Repository personal-local]
-type = Maildir
-localfolders = ~/Mail/personal
-
-[Repository personal-remote]
-type = Gmail
-remoteuser = uwehrmnn@gmail.com
-remotepass = <password>
-sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-ssl = yes
-realdelete = no
-nametrans = lambda folder: re.sub('^inbox$', 'INBOX', re.sub(' +', '_', re. sub(r'.*/(.*)$', r'\1', folder).lower()))
 
 # vim: ft=cfg tw=0

@@ -10,7 +10,7 @@ set indent_string="> "
 set attribution='On %{%a, %d %b %Y}, %n wrote:\n'
 set post_indent_string=""
 
-set realname="Ute"
+set realname="Uwe"
 set from="mail1"
 set use_from=yes
 set envelope_from="yes"

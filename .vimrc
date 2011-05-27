@@ -4,12 +4,12 @@
 "-----------------------------------------------
 " 
 " secure modelines:      http://github.com/ciaranm/securemodelines
-" candycode colorscheme: http://www.vim.org/scripts/script.php?script_id=1635
 " calendar:              http://www.vim.org/scripts/script.php?script_id=52
 " cmdline complete:      http://www.vim.org/scripts/script.php?script_id=2222
 " comments:              http://www.vim.org/scripts/script.php?script_id=1528
 " uptime:                http://www.vim.org/scripts/script.php?script_id=965
 " colemak.vim:           http://colemak.com/pub/vim/colemak.vim
+" pyte.vim:              http://www.vim.org/scripts/script.php?script_id=1492
 "
 
 
@@ -26,7 +26,7 @@ let g:secure_modelines_modelines = 15  " 15 available modelines
 " general settings
 "-----------------------------------------------
 set nocompatible   " disable vi compatibility
-set shiftwidth=4   " number of spaces to indent
+set shiftwidth=2   " number of spaces to indent
 set tabstop=2      " number of spaces <TAB> counts for
 set textwidth=0    " disable automatic word-wrapping
 set number         " show line numbers
@@ -46,10 +46,16 @@ set scrolloff=10   " keep 10 lines for scope
 
 
 "-----------------------------------------------
-" colorscheme (candycode colorscheme req)
+" colorscheme (pyte colorscheme req)
 "-----------------------------------------------
-if !has("gui_running")
-      colorscheme candycode
+if (&term =~ 'linux')
+    set t_Co=16
+    set termencoding=utf-8
+    colorscheme desert
+else
+    set t_Co=256
+    colorscheme donbass 
+    set termencoding=utf-8
 endif
 
 
@@ -81,7 +87,7 @@ set laststatus=2
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
 function! CurDir()
-    let curdir = substitute(getcwd(), '/home/uz', "~/", "g")
+    let curdir = substitute(getcwd(), '/home/uh', "~/", "g")
     return curdir
 endfunction
 
@@ -95,15 +101,12 @@ endfunction
 
 
 "-----------------------------------------------
-" misc. commands
+" misc.
 "-----------------------------------------------
-
 " turn off any existing searches
 if has ("autocmd")
 	au VimEnter * nohls
 endif
 
-"-----------------------------------------------
 " colemak.vim
-"-----------------------------------------------
-source /usr/share/vim/keymap/colemak.vim
+source /usr/share/vim/vimfiles/keymap/colemak.vim
