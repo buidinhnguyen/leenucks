@@ -100,7 +100,7 @@ if [[ ! -e "${CONFIG}" ]] ; then
 	read -rs RESPONSE_CODE
 	token_get
 	echo "access_token:  ${DATADIR}/access_token"
-  echo "refresh_token: ${CONFIG}"
+	echo "refresh_token: ${CONFIG}"
 fi
 
 # access token is expired? get a new one
