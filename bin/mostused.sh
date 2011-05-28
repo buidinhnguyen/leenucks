@@ -4,7 +4,7 @@
 
 PATH=${PATH}:${HOME}/bin
 
-apps="a: firefox\nr: chromium\ns: albumbler\nt: gimp\nd: leave.sh\nq: sshot.sh\nw: kb_switch.sh\nf: libreoffice\np: gajim\ng: gvba\nz: virtualbox\nx: GMail\nc: Google Reader"
+apps="a: firefox\nr: chromium\ns: albumbler\nt: gimp\nd: leave.sh\nq: kb_switch.sh\nw: libreoffice\nf: gajim\np: gvba\nz: virtualbox\nx: GMail\nc: Google Reader"
 
 if [[ -f "$HOME/.dmenurc" ]]; then
 	. "$HOME/.dmenurc"
@@ -20,11 +20,10 @@ case "${choice}" in
 	s) albumbler                           ;;
 	t) gimp                                ;;
 	d) leave.sh                            ;;
-	q) sshot.sh                            ;;
-	w) kb_switch.sh                        ;;
-	f) libreoffice -nologo                 ;;
-	p) gajim                               ;;
-	g) gvba                                ;;
+	q) kb_switch.sh                        ;;
+	w) libreoffice -nologo                 ;;
+	f) gajim                               ;;
+	p) gvba                                ;;
 	z) virtualbox                          ;;
 	x) xdg-open "http://www.gmail.com"     ;;
 	c) xdg-open "http://reader.google.com" ;;  
