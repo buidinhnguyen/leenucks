@@ -11,8 +11,6 @@ mpd_port 6600
 TEXT
 
 [ ${if_mpd_playing}${scroll 15 ${mpd_smart}}${endif}${if_match "${mpd_status}" == "Stopped"}MPD stopped${endif} |\
- ${execpi 60 google_mail_unread.sh}/${new_mails /home/uh/Mail/personal/INBOX/} |\
- ${if_match "${execpi 180 google_reader_unread.sh}" == "" }0${else}${execpi 180 google_reader_unread.sh}${endif} |\
  ${downspeedf eth0}/${upspeedf eth0} KiB/s |\
  ${fs_free_perc /}%/${fs_free_perc /home}% |\
  ${uptime_short} |\

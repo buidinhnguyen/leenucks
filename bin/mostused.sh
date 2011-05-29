@@ -4,7 +4,7 @@
 
 PATH=${PATH}:${HOME}/bin
 
-apps="a: firefox\nr: chromium\ns: albumbler\nt: gimp\nd: leave.sh\nq: kb_switch.sh\nw: libreoffice\nf: gajim\np: gvba\nz: virtualbox\nx: GMail\nc: Google Reader"
+apps="a: google-chrome\nr: albumbler\ns: gimp\nt: leave.sh\nd: kb_switch.sh\nq: libreoffice\nw: gajim\nf: gvba\np: virtualbox\nz: GMail\nx: Google Reader"
 
 if [[ -f "$HOME/.dmenurc" ]]; then
 	. "$HOME/.dmenurc"
@@ -15,17 +15,16 @@ fi
 choice="$(echo -e ${apps} | $DMENU | cut -d ':' -f 1)"
 
 case "${choice}" in
-	a) firefox                             ;;
-	r) chromium                            ;;
-	s) albumbler                           ;;
-	t) gimp                                ;;
-	d) leave.sh                            ;;
-	q) kb_switch.sh                        ;;
-	w) libreoffice -nologo                 ;;
-	f) gajim                               ;;
-	p) gvba                                ;;
-	z) virtualbox                          ;;
-	x) xdg-open "http://www.gmail.com"     ;;
-	c) xdg-open "http://reader.google.com" ;;  
+	a) google-chrome                       ;;
+	r) albumbler                           ;;
+	s) gimp                                ;;
+	t) leave.sh                            ;;
+	d) kb_switch.sh                        ;;
+	q) libreoffice -nologo                 ;;
+	w) gajim                               ;;
+	f) gvba                                ;;
+	p) virtualbox                          ;;
+	z) xdg-open "http://www.gmail.com"     ;;
+	x) xdg-open "http://reader.google.com" ;;  
 esac
 

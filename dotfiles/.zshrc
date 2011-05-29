@@ -10,7 +10,7 @@ compinit
 if [[ -z "$(echo ${PATH} | grep home)" ]] ; then
   export PATH="${HOME}/bin:${PATH}"
 fi
-export BROWSER="firefox"
+export BROWSER="google-chrome"
 export LANG="en_US.utf8"
 export LC_ALL="en_US.utf8"
 export EDITOR="vim"
