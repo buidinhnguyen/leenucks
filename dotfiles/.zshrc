@@ -50,7 +50,7 @@ setopt hist_ignore_all_dups hist_reduce_blanks \
 hist_save_no_dups inc_append_history \
 extended_history share_history multios
 
-# load aliases, completions and prompt
+# load aliases and functions, completions and prompt
 [[ -r ${XDG_CONFIG_HOME}/zsh/aliases    ]] && source "${XDG_CONFIG_HOME}/zsh/aliases"
 [[ -r ${XDG_CONFIG_HOME}/zsh/comp       ]] && source "${XDG_CONFIG_HOME}/zsh/comp"
 PROMPT=$'%n@%m %0(3c,%c,%~) %0(?,%{\e[0;32m%}:%),%{\e[0;31m%}:(%s)%b %# '
