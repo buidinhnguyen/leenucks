@@ -82,3 +82,9 @@ redditchk() {
             "Comment karma: $j->{comment_karma}\n"
     '
 }
+
+# is a page down?
+down4me() {
+	curl -s "http://www.downforeveryoneorjustme.com/$1" |\
+	sed '/just you/!d;s/<[^>]*>//g' 
+}
