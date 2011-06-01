@@ -16,21 +16,20 @@ static const Bool topbar            = True;     /* False means bottom bar */
 static const Bool focusonclick      = True;     /* Change focus only on click */
 
 /* tagging */
-static const char *tags[] = { "1/main", "2/web", "3/ssh", "4/foo" };
+static const char *tags[] = { "1/main", "2/web", "3/foo" };
 
 static const Rule rules[] = {
 	/* class            instance    title          tags mask     isfloating   monitor */
-  { "Firefox",        NULL,       NULL,          1 << 1,       False,       -1 },
-  { "Namoroka",       NULL,       NULL,          1 << 1,       False,       -1 },
   { "Chromium",       NULL,       NULL,          1 << 1,       False,       -1 },
+  { "Firefox",        NULL,       NULL,          1 << 1,       False,       -1 },
   { "Google-chrome",  NULL,       NULL,          1 << 1,       False,       -1 },
+  { "Namoroka",       NULL,       NULL,          1 << 1,       False,       -1 },
   { NULL,             "Browser",  NULL,          1 << 1,       True,        -1 },
-  { "Bitcoin",        NULL,       NULL,          1 << 3,       True,        -1 },
-  { "Gajim.py",       NULL,       NULL,          1 << 3,       False,       -1 },
-  { "Gimp",           NULL,       NULL,          1 << 3,       True,        -1 },
-  { "Lyx",            NULL,       NULL,          1 << 3,       True,        -1 },
-  { "VirtualBox",     NULL,       NULL,          1 << 3,       True,        -1 },
-  { NULL,             NULL,       "LibreOffice", 1 << 3,       False,       -1 },
+  { "Gajim.py",       NULL,       NULL,          1 << 2,       False,       -1 },
+  { "Gimp",           NULL,       NULL,          1 << 2,       True,        -1 },
+  { "Lyx",            NULL,       NULL,          1 << 2,       True,        -1 },
+  { "VirtualBox",     NULL,       NULL,          1 << 2,       True,        -1 },
+  { NULL,             NULL,       "LibreOffice", 1 << 2,       False,       -1 },
   { "feh",            NULL,       NULL,          0,            True,        -1 },
   { "MPlayer",        NULL,       NULL,          0,            True,        -1 },
   { "XFontSel",       NULL,       NULL,          0,            True,        -1 },
