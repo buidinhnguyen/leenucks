@@ -8,3 +8,5 @@ amixer -q -c0 set Master 100 unmute
 -e /usr/bin/mplayer -loop 0 -playlist ~/.playlist
 
 amixer -q -c0 set Master 80 unmute
+
+# vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:

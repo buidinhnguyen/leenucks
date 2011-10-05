@@ -37,8 +37,8 @@ schedule = low_diskspace,5,60,close_low_diskspace=100M
 directory = ~/tmp/dl
 
 # watch directory for new torrents and stop those that have been deleted
-schedule = watch_directory,5,5,load_start=~/tmp/tr/*.torrent
+schedule = watch_directory,5,5,load_start=~/dl/*.torrent
 schedule = untied_directory,10,10,close_untied=
 
 # move completed torrents 
-system.method.set_key = event.download.finished,move_complete,"execute=mv,-u,$d.get_base_path=,~/tmp/anime/;d.set_directory=~/tmp/anime/"
+system.method.set_key = event.download.finished,move_complete,"execute=mv,-u,$d.get_base_path=,~/tmp/done/;d.set_directory=~/tmp/done/"

@@ -2,18 +2,16 @@
 
 /* appearance */
 static const char font[]            = "-*-proggyoptis-*-*-*-*-11-*-*-*-*-*-*-*";
-#define NUMCOLORS 3                     // need at least 3
-static const char colors[NUMCOLORS][ColLast][8] = {
-	// border   foreground  background
-	{ "#202020", "#757575", "#f0f0f0" }, // 0 = normal
-	{ "#202020", "#6d2857", "#f0f0f0" }, // 1 = selected
-	{ "#202020", "#ff3b77", "#ff0000" }, // 2 = urgent/warning
-};
+static const char normbordercolor[] = "#cccccc";
+static const char normbgcolor[]     = "#cccccc";
+static const char normfgcolor[]     = "#000000";
+static const char selbordercolor[]  = "#0066ff";
+static const char selbgcolor[]      = "#cccccc";
+static const char selfgcolor[]      = "#0066ff";
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
-static const Bool focusonclick      = True;     /* Change focus only on click */
 
 /* tagging */
 static const char *tags[] = { "1/main", "2/web", "3/foo" };
@@ -27,7 +25,7 @@ static const Rule rules[] = {
   { NULL,             "Browser",  NULL,          1 << 1,       True,        -1 },
   { "Gajim.py",       NULL,       NULL,          1 << 2,       False,       -1 },
   { "Gimp",           NULL,       NULL,          1 << 2,       True,        -1 },
-  { "Lyx",            NULL,       NULL,          1 << 2,       True,        -1 },
+  { "Lyx",            NULL,       NULL,          1 << 2,       False,       -1 },
   { "VirtualBox",     NULL,       NULL,          1 << 2,       True,        -1 },
   { NULL,             NULL,       "LibreOffice", 1 << 2,       False,       -1 },
   { "feh",            NULL,       NULL,          0,            True,        -1 },
@@ -38,16 +36,14 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-#include "bstack.c"
-static const float mfact      = 0.50; /* factor of master area size [0.05..0.95] */
-static const Bool resizehints = True; /* True means respect size hints in tiled resizals */
+static const float mfact      = 0.50;  /* factor of master area size [0.05..0.95] */
+static const Bool resizehints = False; /* True means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-  { "TTT",      bstack },  /* first entry is default */
-	{ "[]=",      tile },
-	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ "[]=",      tile },     /* first entry is default */
 	{ "[M]",      monocle },
+	{ "><>",      NULL },     /* no layout function means floating behavior */
 };
 
 /* key definitions */
@@ -62,15 +58,12 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
-static const char *termcmd[] = { "urxvtc", NULL };
-static const char scratchpadname[] = "scratchy";
-static const char *scratchpadcmd[] = { "urxvtc", "-name", scratchpadname, "-geometry", "80x20", NULL };
-static const char *mostusedcmd[] = { "mostused.sh", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char *termcmd[] = { "urxvtc-dvtm", NULL };
+static const char *mostusedcmd[] = { "mostused", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-  { MODKEY,                       XK_x,      togglescratch,  {.v = scratchpadcmd} },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_v,      spawn,          {.v = mostusedcmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
@@ -82,11 +75,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-  { MODKEY,                       XK_u,      setlayout,      {.v = &layouts[0]} },
-  { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[1]} },
+  { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+  { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },
   { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
-  { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[3]} },
-  { MODKEY,                       XK_y,      setlayout,      {.v = &layouts[4]} }, 
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },

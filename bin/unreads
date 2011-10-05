@@ -1,0 +1,55 @@
+#!/bin/bash
+# 
+# vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:
+#
+
+gmail0() {
+# "https://mail.google.com/mail/u/0/"
+  echo -n "Mail: 0"
+}
+
+gmail1() {
+# "https://mail.google.com/mail/u/1/"
+  echo -n "/0 :: "
+}
+
+greader() {
+# "http://www.google.com/reader/view/"
+  echo -n "Reader: 0 :: "
+}
+
+# based on http://goo.gl/tVaBH 
+redditchk() {
+  local COOKIE="${XDG_DATA_HOME}/reddit/redditsessioncookie"
+  local CRED="${XDG_CONFIG_HOME}/reddit/redditcredentials"
+  local redditusername redditpassword
+
+  if [[ -r "${CRED}" ]]; then
+    source "${CRED}"
+  else
+    echo "Error: missing ${CRED}"
+    return 1
+  fi
+
+  if [[ ! -r "${COOKIE}" ]]; then
+    curl -d user="${redditusername}" -d passwd="${redditpassword}" -c "${COOKIE}" -s -o /dev/null http://www.reddit.com/api/login
+    chmod 600 "${COOKIE}"
+  fi
+
+  curl -b "${COOKIE}" -s "http://www.reddit.com/user/${redditusername}/about.json" |
+  perl -MJSON -0777 -e '
+    my $j = eval { decode_json(<>)->{data} }; 
+    print "Reddit: ", $j->{has_mail} ? "yes" : "no",
+    "/$j->{link_karma}",
+    "/$j->{comment_karma}"
+  '
+}
+
+if [[ "$(ping -qc1 heise.de 2> /dev/null)" ]] ; then
+  gmail0 
+  gmail1 
+  greader 
+  redditchk
+else
+  echo "Mail: 0/0 :: Reader: 0 :: Reddit: no/0/0"
+fi

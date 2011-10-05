@@ -1,14 +1,8 @@
 #!/bin/bash
 #
-# This program is free software. It comes without any warranty, to
-# the extent permitted by applicable law. You can redistribute it
-# and/or modify it under the terms of the Do What The Fuck You Want
-# To Public License, Version 2, as published by Sam Hocevar. See
-# http://sam.zoy.org/wtfpl/COPYING for more details.
+# TODO
+# rewrite using jshon ("http://kmkeen.com/jshon") instead of using awk grep sed tr 
 #
-# Requirements:
-# curl
-
 # source Google_OAuth2.sh
 Google_OAuth2_sh=$(which Google_OAuth2.sh)
 (( $? != 0 )) && echo "Unable to locate Google_OAuth2.sh. Put it in PATH." && exit 1
@@ -28,3 +22,4 @@ tr '\n' '+' |\
 sed 's/\(.*\)+/\1\n/' |\
 bc 
 
+# vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:

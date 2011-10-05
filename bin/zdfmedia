@@ -19,3 +19,5 @@ foreach my $link(@ARGV){
 	system("mplayer", "-dumpfile", $filename, "-dumpstream", $stream_link);
 
 }
+
+# vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:

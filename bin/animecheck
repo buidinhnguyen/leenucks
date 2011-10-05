@@ -51,3 +51,5 @@ for file in sys.argv[1:]:
         print(e)
         continue
 
+
+# vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:

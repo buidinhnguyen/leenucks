@@ -61,3 +61,5 @@ for ($color = 232; $color < 256; $color++) {
     print "\x1b[48;5;${color}m  ";
 }
 print "\x1b[0m\n";
+
+# vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:

@@ -1,0 +1,25 @@
+#!/bin/zsh
+#
+# most used apps via dmenu
+
+IFS=$'\t\n'
+PATH=${PATH}:${HOME}/bin
+
+apps="gajim
+gimp
+google-chrome
+gvba
+kb_switch.sh
+leave.sh
+libreoffice
+lyx
+urxvt
+urxvtc
+urxvtc-dvtm
+virtualbox
+vms"
+
+$(echo ${apps} |\
+ dmenu -i -fn 'Proggyoptis-8' -nb '#cccccc' -nf '#000000' -sb '#cccccc' -sf '#0066ff' )
+
+# vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:

@@ -1,11 +1,5 @@
 #!/bin/bash
 #
-# This program is free software. It comes without any warranty, to
-# the extent permitted by applicable law. You can redistribute it
-# and/or modify it under the terms of the Do What The Fuck You Want
-# To Public License, Version 2, as published by Sam Hocevar. See
-# http://sam.zoy.org/wtfpl/COPYING for more details.
-#
 # Requirements:
 #	curl
 #	xdg-open
@@ -15,7 +9,7 @@
 #
 #
 # TODO:
-#	rewrite using only curl to get the response code for authorizing the program
+# rewrite using jshon ("http://kmkeen.com/jshon") instead of using awk grep sed tr 
 #	multiple accounts (?)
 #
 
@@ -23,7 +17,7 @@
 DATADIR="${XDG_DATA_HOME:-$HOME/.local/share}/google_oauth2"
 CONFDIR="${XDG_CONFIG_HOME:-$HOME/.config}/google_oauth2"
 CONFIG="${CONFDIR}/ggloauthrc"
-# register your client in Google APIs console (http://code.google.com/apis/console#access) and replace it
+# register your client in Google APIs console (http://code.google.com/apis/console#access) and replace the following
 CLIENT_ID="560131576595.apps.googleusercontent.com"
 CLIENT_SECRET="nMn36cHLp_ty20QoG0EuVPfY"
 
@@ -88,10 +82,9 @@ token_refresh() {
 }
 
 ## Start the program
-## rewrite using plain-curl ~
 # Are we using X?
 X=$(ps --no-headers -C X)
-[[ -z "${X}" ]] && echo "Need X server for now, exiting" && exit 1
+[[ -z "${X}" ]] && echo "Need X, exiting" && exit 1
 
 # does a configfile already exist? if no, then get authorized and get the tokens
 if [[ ! -e "${CONFIG}" ]] ; then
@@ -107,3 +100,5 @@ fi
 EXPIRY=$(awk '/^exp/ { print $2 }' ${DATADIR}/access_token )
 FILEAGE=$(($(date +%s) - $(stat -c '%Y' "${DATADIR}/access_token")))
 (( "${FILEAGE}" > "${EXPIRY}" )) && token_refresh
+
+# vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:

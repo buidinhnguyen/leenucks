@@ -1,13 +1,13 @@
 #!/bin/bash
 
-function netstatus {
+netstatus() {
 kib=$[2**10]
 mib=$[2**20]
 
-if [[ "ping -qc1 heise.de 2> /dev/null" ]] ; then
-  if [[ $(ifconfig|grep -c wlan0) -ne "0" ]] ; then
+if [[ "$(ping -qc1 heise.de 2> /dev/null)" ]] ; then
+  if [[ "$(ifconfig|grep -c wlan0)" -ne "0" ]] ; then
     net=wlan0;
-  elif [[ $(ifconfig|grep -c eth0) -ne "0" ]] ; then
+  elif [[ "$(ifconfig|grep -c eth0)" -ne "0" ]] ; then
     net=eth0;
   fi
  
@@ -38,19 +38,19 @@ else
 fi
 }
 
-function disk {
+disk() {
   root=$(df -P | awk '/root/ { print $5 }')
   home=$(df -P | awk '/home/ { print $5 }')
   echo "Disk: ${root}/${home} | "
 }
 
-function newmail {
+newmail() {
   box=$(find ${HOME}/Mail/GMail/INBOX/new -type f | wc -l)
   box2=$(find ${HOME}/Mail/personal/INBOX/new -type f | wc -l)
   echo -e "Mail: ${box}/${box2} | "
 }
 
-function music {
+music() {
   mpc=$(mpc | awk 'NR < 2;/^\[p/ { print $2 }' | tr '\n' ' ')
   mpcradio=$(mpc current | cut -c 53-120)
   mpcr=$(mpc current | grep -c Radio)
@@ -64,7 +64,7 @@ function music {
   fi
 }
 
-function uptime_short {
+uptime_short() {
 up=$(</proc/uptime)
 u=${up%%.*}
 
@@ -79,7 +79,7 @@ else
 fi
 }
 
-function date_mute { 
+date_mute() { 
 	d=$(date +'%d/%m/%y %H:%M')
 	dm=$(date +'%H:%M')
 	vol=$(amixer -c 0 get Master | awk '/^  Mono:/ { print $3 }')
@@ -90,7 +90,7 @@ function date_mute {
 	fi
 }
 
-function qb {
+qb() {
   echo "／人◕ ‿‿ ◕人＼ |"
 }
 
