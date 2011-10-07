@@ -1,6 +1,6 @@
 pkgname=dwm
-pkgver=5.8.2
-pkgrel=2
+pkgver=5.9
+pkgrel=1
 pkgdesc="A dynamic window manager for X"
 url="http://dwm.suckless.org"
 arch=('i686' 'x86_64')
@@ -8,12 +8,15 @@ license=('MIT')
 options=(zipman)
 depends=('libx11')
 source=(http://dl.suckless.org/dwm/dwm-${pkgver}.tar.gz \
-        config.def.h )
+        config.def.h
+        dwm-${pkgver}-centered-floating.diff)
 . md5sums
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
 
   cp "${srcdir}"/config.def.h config.h
+
+  patch -p1 < ../dwm-${pkgver}-centered-floating.diff
 
   sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
   sed -i 's/CFLAGS =/CFLAGS +=/g' config.mk
