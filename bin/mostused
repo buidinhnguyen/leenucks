@@ -17,7 +17,8 @@ urxvt
 urxvtc
 urxvtc-dvtm
 virtualbox
-vms"
+vms
+widelands"
 
 $(echo ${apps} |\
  dmenu -i -fn 'Proggyoptis-8' -nb '#cccccc' -nf '#000000' -sb '#cccccc' -sf '#0066ff' )
