@@ -13,6 +13,7 @@ TEXT
  ${if_mpd_playing}${mpd_smart}${endif}${if_match "${mpd_status}" == "Stopped"}MPD stopped${endif} ::\
  ${downspeedf eth0}/${upspeedf eth0} ::\
  ${execpi 180 ~/bin/unreads} ::\
+ Updates: ${execpi 180 ~/bin/checkupdates} ::\
  ${fs_used_perc /}%/${fs_used_perc /home}% ::\
  ${uptime_short} ::\
  ${time %d/%m/%y %H:%M} 

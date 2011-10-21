@@ -1,0 +1,11 @@
+#!/bin/sh
+# Original by keenerd - http://kmkeen.com
+# checkupdates - a safe way to find the number of pending updates
+
+fakedb="${fakedb:-/tmp/.localsync/}"
+
+mkdir -p "$fakedb" &> /dev/null
+ln -s /var/lib/pacman/local "$fakedb" &> /dev/null
+fakeroot pacman -Sqy --dbpath "$fakedb" &> /dev/null
+pacman -Qqu --dbpath "$fakedb" | grep -v "dwm" | wc -l
+

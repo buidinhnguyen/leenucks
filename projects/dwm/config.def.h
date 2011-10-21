@@ -29,6 +29,7 @@ static const Rule rules[] = {
   { "VirtualBox",     NULL,       NULL,          1 << 2,       True,        -1 },
   { NULL,             NULL,       "LibreOffice", 1 << 2,       False,       -1 },
   { "feh",            NULL,       NULL,          0,            True,        -1 },
+  { "openttd",        NULL,       NULL,          0,            True,        -1 },
   { "MPlayer",        NULL,       NULL,          0,            True,        -1 },
   { "XFontSel",       NULL,       NULL,          0,            True,        -1 },
   { "Zathura",        NULL,       NULL,          0,            True,        -1 },
