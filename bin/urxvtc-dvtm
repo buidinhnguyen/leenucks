@@ -1,5 +1,5 @@
 #!/bin/sh
 
-urxvtc -e status-dvtm
+urxvtc -e dvtm
 
 # vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:

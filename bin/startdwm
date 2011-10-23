@@ -1,5 +1,6 @@
 #!/bin/sh
 while true; do
+  ~/bin/dwmstatus &2> /dev/null
   dwm 2> ~/.dwm.log     # log stderror to a file
 done
 
