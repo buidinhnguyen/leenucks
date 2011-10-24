@@ -1,7 +1,9 @@
 #!/bin/sh
+exec &>>~/.dwm.log    # log everything to ~/.dwm.log
+
 while true; do
-  ~/bin/dwmstatus &2> /dev/null
-  dwm 2> ~/.dwm.log     # log stderror to a file
+  ~/bin/dwmstatus &   # need to run the statusbar app in the background
+  dwm
 done
 
 # vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:
