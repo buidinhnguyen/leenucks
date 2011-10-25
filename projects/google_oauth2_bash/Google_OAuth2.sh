@@ -1,84 +1,86 @@
 #!/bin/bash
 #
 # Requirements:
-#	curl
-#	xdg-open
-#	grep
-#	sed
-#	ps
-#
+#  - curl
+#  - jshon (http://kmkeen.com/jshon/)
+#  - sed
+#  - xdg-open
 #
 # TODO:
-# rewrite using jshon ("http://kmkeen.com/jshon") instead of using awk grep sed tr 
 #	multiple accounts (?)
 #
 
 ## hardcoded strings
-DATADIR="${XDG_DATA_HOME:-$HOME/.local/share}/google_oauth2"
-CONFDIR="${XDG_CONFIG_HOME:-$HOME/.config}/google_oauth2"
+DATADIR="${XDG_DATA_HOME:-${HOME}/.local/share}/google_oauth2"
+CONFDIR="${XDG_CONFIG_HOME:-${HOME}/.config}/google_oauth2"
 CONFIG="${CONFDIR}/ggloauthrc"
-# register your client in Google APIs console (http://code.google.com/apis/console#access) and replace the following
-CLIENT_ID="560131576595.apps.googleusercontent.com"
-CLIENT_SECRET="nMn36cHLp_ty20QoG0EuVPfY"
+# register your client in Google APIs console (http://code.google.com/apis/console#access) and change the following:
+CLIENT_ID="1066434597262.apps.googleusercontent.com"
+CLIENT_SECRET="iDotuISm0gjN-TGMVP47jop5"
 
 # test for needed directories
-[[ ! -d "${DATADIR}" ]] && mkdir "${DATADIR}"
-[[ ! -d "${CONFDIR}" ]] && mkdir "${CONFDIR}"
+[[ ! -d "${DATADIR}" ]] && mkdir -p "${DATADIR}"
+[[ ! -d "${CONFDIR}" ]] && mkdir -p "${CONFDIR}"
 
 # configfile exists? get variables
-[[ -e "${CONFIG}" ]] && AUTH="$(awk '/^authorization/ { print $2 }' ${CONFIG})"
-[[ -e "${CONFIG}" ]] && REFRESH_TOKEN="$(awk '/^refresh/ { print $2 }' ${CONFIG})"
+[[ -e "${CONFIG}" ]] && AUTH="$(jshon -e 'authorization_granted' < ${CONFIG})"
+[[ -e "${CONFIG}" ]] && REFRESH_TOKEN="$(jshon -e 'refresh_token' < ${CONFIG} | sed -e 's/"//g')"
 
 ## authorize the application
 # look for scopes in Google APIs documentation
-# this example: Access to Google Reader export, Google Reader API && gmail unread feed
+# this example: Access to Google Reader export, Google Reader API && gmail feed
 ### change it accordingly and don't forget to include %20 when using multiple scopes ###
 token_auth() {
-	xdg-open "https://accounts.google.com/o/oauth2/auth?\
-	client_id=${CLIENT_ID}&\
-	redirect_uri=urn:ietf:wg:oauth:2.0:oob&\
-	response_type=code&\
-	scope=https://www.google.com/reader/subscriptions/export%20https://www.google.com/reader/api/%20https://mail.google.com/mail/feed/atom"
+  xdg-open "https://accounts.google.com/o/oauth2/auth?\
+  client_id=${CLIENT_ID}&\
+  redirect_uri=urn:ietf:wg:oauth:2.0:oob&\
+  response_type=code&\
+  scope=https://www.google.com/reader/subscriptions/export%20https://www.google.com/reader/api/%20https://mail.google.com/mail/feed/atom"
 }
 
-## get the first tokens and grant the access
+## get the first tokens, grant the access and delete the unneccessary files
 token_get() {
-	curl -s https://accounts.google.com/o/oauth2/token \
-	-d "client_id=${CLIENT_ID}" \
-	-d "client_secret=${CLIENT_SECRET}" \
-	-d "code=${RESPONSE_CODE}" \
-	-d "redirect_uri=urn:ietf:wg:oauth:2.0:oob" \
-	-d "grant_type=authorization_code" |\
-	tr ',' '\n' |\
-	grep -v type |\
-	sed -e 's#"##g;s#{##g;s#}##g;s#%##g;s#:# #g' \
-	> "${CONFDIR}/tokens"
+  curl -s "https://accounts.google.com/o/oauth2/token" \
+  -d "client_id=${CLIENT_ID}" \
+  -d "client_secret=${CLIENT_SECRET}" \
+  -d "code=${RESPONSE_CODE}" \
+  -d "redirect_uri=urn:ietf:wg:oauth:2.0:oob" \
+  -d "grant_type=authorization_code" \
+  -o "${CONFDIR}/tokens"
+  
+  [[ -e "${DATADIR}/access_token" ]] && rm "${DATADIR}/access_token"
+  
+  ACCESS_TOKEN=$(jshon -e 'access_token' < "${CONFDIR}/tokens")
+  EXPIRY_TIME=$(jshon -e 'expires_in' < "${CONFDIR}/tokens")
 
-	[[ -e "${DATADIR}/access_token" ]] && rm "${DATADIR}/access_token"
+  echo "{" > "${DATADIR}/access_token"
+  echo " \"access_token\" : ${ACCESS_TOKEN}," >> "${DATADIR}/access_token"
+  echo " \"expires_in\" : ${EXPIRY_TIME}" >> "${DATADIR}/access_token"
+  echo "}" >> "${DATADIR}/access_token"
 
-	grep -A1 "access" "${CONFDIR}/tokens" > "${DATADIR}/access_token"
-	chmod 0600 "${DATADIR}/access_token"
+  REFRESH_TOKEN="$(jshon -e 'refresh_token' < "${CONFDIR}/tokens" )"
 
-	grep "refresh" "${CONFDIR}/tokens" > "${CONFIG}"
-	chmod 0600 "${CONFIG}"
+  echo "{" > "${CONFIG}"
+  echo " \"refresh_token\" : ${REFRESH_TOKEN}," >> "${CONFIG}"
+  echo " \"authorization_granted\" : \"yes\"" >> "${CONFIG}"
+  echo "}" >> "${CONFIG}"
 
-	rm "${CONFDIR}/tokens"
+  echo ""
+  echo "Configfile ${CONFIG} created"
 
-	echo "authorization_granted yes" >> "${CONFIG}"
+  rm "${CONFDIR}/tokens"
 }
 
 ## delete the old access token and refresh your access token
 token_refresh() {
-	[[ -e "${DATADIR}/access_token" ]] && rm "${DATADIR}/access_token"
+  [[ -e "${DATADIR}/access_token" ]] && rm "${DATADIR}/access_token"
 
-	curl -s https://accounts.google.com/o/oauth2/token \
-	-d "client_id=${CLIENT_ID}" \
-	-d "client_secret=${CLIENT_SECRET}" \
-	-d "refresh_token=${REFRESH_TOKEN}" \
-	-d "grant_type=refresh_token" |\
-	tr ',' '\n' |\
-	sed -e 's#"##g;s#{##g;s#}##g;s#%##g;s#:# #g' \
-	> "${DATADIR}/access_token"
+  curl -s https://accounts.google.com/o/oauth2/token \
+  -d "client_id=${CLIENT_ID}" \
+  -d "client_secret=${CLIENT_SECRET}" \
+  -d "refresh_token=${REFRESH_TOKEN}" \
+  -d "grant_type=refresh_token" \
+  -o "${DATADIR}/access_token"
 }
 
 ## Start the program
@@ -88,17 +90,18 @@ X=$(ps --no-headers -C X)
 
 # does a configfile already exist? if no, then get authorized and get the tokens
 if [[ ! -e "${CONFIG}" ]] ; then
-	token_auth
-	echo -e "Copy and paste the authorization code and press Enter:"
-	read -rs RESPONSE_CODE
-	token_get
-	echo "access_token:  ${DATADIR}/access_token"
-	echo "refresh_token: ${CONFIG}"
+  token_auth
+  echo -e "Copy and paste the authorization code and press Enter:"
+  read -rs RESPONSE_CODE
+  token_get
+  echo "access_token:  ${DATADIR}/access_token"
+  echo "refresh_token: ${CONFIG}"
 fi
 
 # access token is expired? get a new one
-EXPIRY=$(awk '/^exp/ { print $2 }' ${DATADIR}/access_token )
-FILEAGE=$(($(date +%s) - $(stat -c '%Y' "${DATADIR}/access_token")))
-(( "${FILEAGE}" > "${EXPIRY}" )) && token_refresh
+#EXPIRY=$(jshon -e 'expires_in' < ${DATADIR}/access_token )
+#FILEAGE=$(($(date +%s) - $(stat -c '%Y' "${DATADIR}/access_token")))
+#(( "${FILEAGE}" > "${EXPIRY}" )) && token_refresh
+token_refresh
 
 # vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:

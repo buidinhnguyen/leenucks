@@ -1,5 +1,10 @@
 #!/bin/bash
 #
+# Requirements:
+#  - Google_OAuth2.sh
+#  - curl
+#  - jshon (http://kmkeen.com/jshon/)
+#
 # PATH for crontab
 PATH="/home/uh/bin:${PATH}"
 # source Google_OAuth2.sh
@@ -9,7 +14,7 @@ source "${Google_OAuth2_sh}"
 
 DT=$(date +"%Y%m%d")
 
-OAUTH_TOKEN="$(awk '/^access/ { print $2 }' ${DATADIR}/access_token )"
+OAUTH_TOKEN="$(jshon -e 'access_token' < ${DATADIR}/access_token )"
 BACKUP_FILE="${HOME}/files/backups/Subscriptions-${DT}.opml"
 
 # get the reader subscriptions as an opml file and save them in ~/files/backups as Subscriptions-YYYYMMDD.opml

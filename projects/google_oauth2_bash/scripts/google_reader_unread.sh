@@ -1,14 +1,19 @@
 #!/bin/bash
 #
+# Requirements
+#  - Google_OAuth2.sh
+#  - curl
+#  - jshon (http://kmkeen.com/jshon/)
+#
 # TODO
-# rewrite using jshon ("http://kmkeen.com/jshon") instead of using awk grep sed tr 
+# rewrite using jshon instead of awk grep sed tr 
 #
 # source Google_OAuth2.sh
 Google_OAuth2_sh=$(which Google_OAuth2.sh)
 (( $? != 0 )) && echo "Unable to locate Google_OAuth2.sh. Put it in PATH." && exit 1
 source "${Google_OAuth2_sh}"
 
-OAUTH_TOKEN="$(awk '/^access/ { print $2 }' ${DATADIR}/access_token )"
+OAUTH_TOKEN="$(jshon -e 'access_token' < ${DATADIR}/access_token )"
 
 # get the unread count for Google Reader using magic
 curl -s -H "Authorization: OAuth ${OAUTH_TOKEN}" "https://www.google.com/reader/api/0/unread-count?allcomments=false&output=json" |\
