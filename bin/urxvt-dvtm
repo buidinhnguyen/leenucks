@@ -1,0 +1,5 @@
+#!/bin/sh
+
+urxvt -e dvtm
+
+# vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:

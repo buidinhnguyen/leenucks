@@ -15,8 +15,9 @@ libreoffice
 lyx
 openttd
 urxvt
-urxvtc
-urxvtc-dvtm
+urxvt-dvtm
+st
+st-dvtm
 virtualbox
 vms
 widelands"
