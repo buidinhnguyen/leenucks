@@ -1,11 +1,47 @@
-#!/bin/sh
-# Original by keenerd - http://kmkeen.com
-# checkupdates - a safe way to find the number of pending updates
+#!/bin/bash
+#
+#   checkupdates: A safe way to find pending updates.
+#
+#   Copyright (c) 2011 Kyle Keen <keenerd@gmail.com>
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
-fakedb="${fakedb:-/tmp/.localsync/}"
+if (( $# > 0 )); then
+	echo "checkupdate: A safe way to find pending updates."
+	echo "Use: checkupdates"
+	echo "It takes no arguments and prints a list of packages to stdout."
+	echo "The path of the fake database may be changed by"
+	echo "exporting the 'fakedb' variable."
+	exit 0
+fi
 
-mkdir -p "$fakedb" &> /dev/null
-ln -s /var/lib/pacman/local "$fakedb" &> /dev/null
+if [[ -z $fakedb ]]; then
+	fakedb="${TMPDIR:-/tmp}/.localsync/${USER}/"
+fi
+
+trap 'rm -f $fakedb/db.lck' INT TERM EXIT
+
+eval $(awk '/DBPath/ {print $1$2$3}' /etc/pacman.conf)
+DBPath="${DBPath:-@localstatedir@/lib/pacman/}"
+DBPath="${DBPath/\@localstatedir\@//var}"  # delete this line when merged
+
+mkdir -p "$fakedb"
+ln -s "${DBPath}/local" "$fakedb" &> /dev/null
 fakeroot pacman -Sqy --dbpath "$fakedb" &> /dev/null
-pacman -Qqu --dbpath "$fakedb" | grep -v "dwm" | wc -l
+pacman -Qqu --dbpath "$fakedb" 2> /dev/null
 
+exit 0
+
+# vim: set ts=2 sw=2 noet:
