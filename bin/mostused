@@ -5,7 +5,9 @@
 IFS=$'\t\n'
 PATH=${PATH}:${HOME}/bin
 
-apps="gajim
+apps="dmenuclip
+dmenurl
+gajim
 gimp
 google-chrome
 gvba
