@@ -19,7 +19,7 @@
 "mpc -q next"
 	m:0x0 + c:153
 	XF86AudioNext
-"st -title ncmpcpp -e ncmpcpp"
+"st -t ncmpcpp -e ncmpcpp"
 	m:0x0 + c:129
 	XF86AudioMedia
 "xdg-open http://gmail.com"

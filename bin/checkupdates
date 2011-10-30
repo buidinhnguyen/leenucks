@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#   checkupdates: A safe way to find pending updates.
+#   checkupdates: Safely print a list of pending updates.
 #
 #   Copyright (c) 2011 Kyle Keen <keenerd@gmail.com>
 #
@@ -19,28 +19,26 @@
 #
 
 if (( $# > 0 )); then
-	echo "checkupdate: A safe way to find pending updates."
+	echo "checkupdate: Safely print a list of pending updates."
 	echo "Use: checkupdates"
-	echo "It takes no arguments and prints a list of packages to stdout."
-	echo "The path of the fake database may be changed by"
-	echo "exporting the 'fakedb' variable."
+	echo "Export the 'CHECKUPDATE_DB' variable to change the path of the temporary database."
 	exit 0
 fi
 
-if [[ -z $fakedb ]]; then
-	fakedb="${TMPDIR:-/tmp}/.localsync/${USER}/"
+if [[ -z $CHECKUPDATE_DB ]]; then
+	CHECKUPDATE_DB="${TMPDIR:-/tmp}/checkup-db-${USER}/"
 fi
 
-trap 'rm -f $fakedb/db.lck' INT TERM EXIT
+trap 'rm -f $CHECKUPDATE_DB/db.lck' INT TERM EXIT
 
 eval $(awk '/DBPath/ {print $1$2$3}' /etc/pacman.conf)
 DBPath="${DBPath:-@localstatedir@/lib/pacman/}"
 DBPath="${DBPath/\@localstatedir\@//var}"  # delete this line when merged
 
-mkdir -p "$fakedb"
-ln -s "${DBPath}/local" "$fakedb" &> /dev/null
-fakeroot pacman -Sqy --dbpath "$fakedb" &> /dev/null
-pacman -Qqu --dbpath "$fakedb" 2> /dev/null
+mkdir -p "$CHECKUPDATE_DB"
+ln -s "${DBPath}/local" "$CHECKUPDATE_DB" &> /dev/null
+fakeroot pacman -Sqy --dbpath "$CHECKUPDATE_DB" &> /dev/null
+pacman -Qqu --dbpath "$CHECKUPDATE_DB" 2> /dev/null
 
 exit 0
 
