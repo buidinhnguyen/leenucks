@@ -1,6 +1,6 @@
 ##
 # ${XDG_CONFIG_HOME}/zsh/aliases
-# zsh aliases and functions
+# zsh aliases
 ##
 # pacman
 alias pacman='sudo pacman'
