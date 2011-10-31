@@ -10,15 +10,18 @@ depends=('libx11')
 source=(http://dl.suckless.org/dwm/dwm-${pkgver}.tar.gz \
         config.def.h
         dwm-${pkgver}-centered-floating.diff
+        dwm-${pkgver}-nmaster-ncol.c
         dwm-${pkgver}-popupbar.diff)
 . md5sums
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
 
+  cp "${srcdir}"/dwm-"${pkgver}"-nmaster-ncol.c nmaster-ncol.c
+
   cp "${srcdir}"/config.def.h config.h
 
-  patch -p1 < ../dwm-${pkgver}-centered-floating.diff
-  patch -p1 < ../dwm-${pkgver}-popupbar.diff
+  patch -p1 < ../dwm-"${pkgver}"-centered-floating.diff
+  patch -p1 < ../dwm-"${pkgver}"-popupbar.diff
 
   sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
   sed -i 's/CFLAGS =/CFLAGS +=/g' config.mk

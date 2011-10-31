@@ -10,31 +10,34 @@ static const char selbgcolor[]      = "#cccccc";
 static const char selfgcolor[]      = "#0066ff";
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
+static const int nmaster            = 2;        /* default number of clients in the master area */
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
+
+#include "nmaster-ncol.c"
 
 /* tagging */
 static const char *tags[] = { "1/main", "2/web", "3/foo" };
 
 static const Rule rules[] = {
 	/* class            instance    title          tags mask     isfloating   monitor */
-  { "Chromium",       NULL,       NULL,          1 << 1,       False,       -1 },
-  { "Firefox",        NULL,       NULL,          1 << 1,       False,       -1 },
-  { "Google-chrome",  NULL,       NULL,          1 << 1,       False,       -1 },
-  { "Namoroka",       NULL,       NULL,          1 << 1,       False,       -1 },
-  { NULL,             "Browser",  NULL,          1 << 1,       True,        -1 },
-  { "Gajim.py",       NULL,       NULL,          1 << 2,       False,       -1 },
-  { "Gimp",           NULL,       NULL,          1 << 2,       True,        -1 },
-  { "Lyx",            NULL,       NULL,          1 << 2,       False,       -1 },
-  { "VirtualBox",     NULL,       NULL,          1 << 2,       True,        -1 },
-  { NULL,             NULL,       "LibreOffice", 1 << 2,       False,       -1 },
-  { "feh",            NULL,       NULL,          0,            True,        -1 },
-  { "openttd",        NULL,       NULL,          0,            True,        -1 },
-  { "sxiv",           NULL,       NULL,          0,            True,        -1 },
-  { "MPlayer",        NULL,       NULL,          0,            True,        -1 },
-  { "XFontSel",       NULL,       NULL,          0,            True,        -1 },
-  { "Zathura",        NULL,       NULL,          0,            True,        -1 },
-  { NULL,             NULL,       "Save file",   0,            True,        -1 },
+	{ "Chromium",       NULL,       NULL,          1 << 1,       False,       -1 },
+	{ "Firefox",        NULL,       NULL,          1 << 1,       False,       -1 },
+	{ "Google-chrome",  NULL,       NULL,          1 << 1,       False,       -1 },
+	{ "Namoroka",       NULL,       NULL,          1 << 1,       False,       -1 },
+	{ NULL,             "Browser",  NULL,          1 << 1,       True,        -1 },
+	{ "Gajim.py",       NULL,       NULL,          1 << 2,       False,       -1 },
+	{ "Gimp",           NULL,       NULL,          1 << 2,       True,        -1 },
+	{ "Lyx",            NULL,       NULL,          1 << 2,       False,       -1 },
+	{ "VirtualBox",     NULL,       NULL,          1 << 2,       True,        -1 },
+	{ NULL,             NULL,       "LibreOffice", 1 << 2,       False,       -1 },
+	{ "feh",            NULL,       NULL,          0,            True,        -1 },
+	{ "openttd",        NULL,       NULL,          0,            True,        -1 },
+	{ "sxiv",           NULL,       NULL,          0,            True,        -1 },
+	{ "MPlayer",        NULL,       NULL,          0,            True,        -1 },
+	{ "XFontSel",       NULL,       NULL,          0,            True,        -1 },
+	{ "Zathura",        NULL,       NULL,          0,            True,        -1 },
+	{ NULL,             NULL,       "Save file",   0,            True,        -1 },
 };
 
 /* layout(s) */
@@ -43,9 +46,10 @@ static const Bool resizehints = False; /* True means respect size hints in tiled
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },     /* first entry is default */
-	{ "[M]",      monocle },
-	{ "><>",      NULL },     /* no layout function means floating behavior */
+	{ "-|=",      ntile },    /* nmaster tiling */
+	{ "-|-",      nbstack },  /* nmaster bottomstack */
+	{ "[M]",      monocle },  /* maximized */
+	{ "><>",      NULL },     /* floating */
 };
 
 /* key definitions */
@@ -79,9 +83,13 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-  { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-  { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },
-  { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_a,      incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_z,      incnmaster,     {.i = -1 } },
+	{ MODKEY,                       XK_x,      setnmaster,     {.i = 2 } },
+	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY,                       XK_b,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
