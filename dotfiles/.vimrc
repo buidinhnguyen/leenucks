@@ -9,6 +9,7 @@
 " uptime:                http://www.vim.org/scripts/script.php?script_id=965
 " colemak.vim:           http://colemak.com/pub/vim/colemak.vim
 " pyte.vim:              http://www.vim.org/scripts/script.php?script_id=1492
+" nerdtree.vim:          http://www.vim.org/scripts/script.php?script_id=1658
 "
 
 
@@ -27,7 +28,8 @@ let g:secure_modelines_modelines = 15  " 15 available modelines
 set nocompatible   " disable vi compatibility
 set shiftwidth=2   " number of spaces to indent
 set tabstop=2      " number of spaces <TAB> counts for
-set textwidth=0    " disable automatic word-wrapping
+set textwidth=78   " line length before wrapping
+set wrap           " Wrap a line if its too long
 set number         " show line numbers
 set incsearch      " incremental searching
 set ignorecase     " search ignoring case
@@ -48,13 +50,13 @@ set scrolloff=10   " keep 10 lines for scope
 " colorscheme (pyte colorscheme req)
 "-----------------------------------------------
 if (&term =~ 'linux')
-    set t_Co=16
-    set termencoding=utf-8
-    colorscheme desert
+  set t_Co=16
+  set termencoding=utf-8
+  colorscheme desert
 else
-    set t_Co=256
-    colorscheme donbass 
-    set termencoding=utf-8
+  set t_Co=256
+  colorscheme pyte 
+  set termencoding=utf-8
 endif
 
 
@@ -63,7 +65,7 @@ endif
 "-----------------------------------------------
 " enable syntax-highlighting
 if has ("syntax")
-	syntax on
+  syntax on
 endif
 
 
@@ -86,17 +88,27 @@ set laststatus=2
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
 function! CurDir()
-    let curdir = substitute(getcwd(), '/home/uh', "~", "g")
-    return curdir
+  let curdir = substitute(getcwd(), '/home/uh', "~", "g")
+  return curdir
 endfunction
 
 function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    else
-        return ''
-    endif
+  if &paste
+    return 'PASTE MODE  '
+  else
+    return ''
+  endif
 endfunction
+
+
+"-----------------------------------------------
+" NERD Tree Plugin Settings
+"-----------------------------------------------
+" toggle the NERDtree F7
+nmap <F7> :NERDTreeToggle<CR>
+
+" close the NERDTree with Shift-F7
+nmap <S-F7> :NERDTreeClose<CR>
 
 
 "-----------------------------------------------
@@ -107,5 +119,10 @@ if has ("autocmd")
 	au VimEnter * nohls
 endif
 
+" display <tab>s, etc...
+set list
+set lcs=tab:│┈,trail:·,extends:>,precedes:<,nbsp:&
+
 " colemak.vim
 source /usr/share/vim/vimfiles/keymap/colemak.vim
+

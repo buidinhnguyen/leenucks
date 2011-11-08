@@ -65,7 +65,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[] = { "st-dvtm", NULL };
+static const char *termcmd[] = { "urxvtc-dvtm", NULL };
 static const char *mostusedcmd[] = { "mostused", NULL };
 static const char *lockcmd[] = { "slock", NULL };
 

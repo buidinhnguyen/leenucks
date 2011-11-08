@@ -84,12 +84,12 @@ token_refresh() {
 }
 
 ## Start the program
-# Are we using X?
-X=$(ps --no-headers -C X)
-[[ -z "${X}" ]] && echo "Need X, exiting" && exit 1
-
 # does a configfile already exist? if no, then get authorized and get the tokens
 if [[ ! -e "${CONFIG}" ]] ; then
+  # Are we using X?
+  X=$(ps --no-headers -C X)
+  [[ -z "${X}" ]] && echo "Need X, exiting" && exit 1
+  
   token_auth
   echo -e "Copy and paste the authorization code and press Enter:"
   read -rs RESPONSE_CODE
@@ -99,9 +99,8 @@ if [[ ! -e "${CONFIG}" ]] ; then
 fi
 
 # access token is expired? get a new one
-#EXPIRY=$(jshon -e 'expires_in' < ${DATADIR}/access_token )
-#FILEAGE=$(($(date +%s) - $(stat -c '%Y' "${DATADIR}/access_token")))
-#(( "${FILEAGE}" > "${EXPIRY}" )) && token_refresh
-token_refresh
+EXPIRY=$(jshon -e 'expires_in' < ${DATADIR}/access_token )
+FILEAGE=$(($(date +%s) - $(stat -c '%Y' "${DATADIR}/access_token")))
+(( "${FILEAGE}" > "${EXPIRY}" )) && token_refresh
 
 # vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:

@@ -92,7 +92,7 @@ fun! <SID>CheckVersion(op, ver) abort
 endfun
 
 fun! <SID>DoModeline(line) abort
-    let l:matches = matchlist(a:line, '\%(\S\@<!\%(vi\|vim\([<>=]\?\)\([0-9]\+\)\?\)\|\sex\):\s\+set\?\s\+\([^:]\+\):\S\@!')
+    let l:matches = matchlist(a:line, '\%(\S\@<!\%(vi\|vim\([<>=]\?\)\([0-9]\+\)\?\)\|\sex\):\s*\(set\s\+\)\?\([^:]\+\):\S\@!')
     if len(l:matches) > 0
         let l:operator = ">"
         if len(l:matches[1]) > 0
@@ -143,6 +143,6 @@ endfun
 
 aug SecureModeLines
     au!
-    au BufRead * :call <SID>DoModelines()
+    au BufRead,StdinReadPost * :call <SID>DoModelines()
 aug END
 
