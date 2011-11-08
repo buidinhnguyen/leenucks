@@ -3,4 +3,4 @@
 conky -c ${XDG_CONFIG_HOME}/conky/conkyrc |\
 while read -r; do xsetroot -name "$REPLY"; done &
 
-# vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:

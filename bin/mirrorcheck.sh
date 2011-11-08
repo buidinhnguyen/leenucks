@@ -10,4 +10,4 @@ regex=$(sed '/^ *Server *= *\([^\$]*\)\$repo.*$/!d;s//\1/' /etc/pacman.d/mirrorl
 # fetch last update time and print
 grep -E "$regex" <(curl -s 'https://www.archlinux.de/?page=MirrorStatusReflector')
 
-# vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:

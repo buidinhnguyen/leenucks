@@ -1,6 +1,6 @@
 ##
 # .zshrc
-# vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:ft=sh:
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:ft=sh:
 ##
 # basics
 autoload -U compinit zmv url-quote-magic

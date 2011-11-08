@@ -5,18 +5,18 @@
 ###
 
 if [[ -f "${HOME}/.dmenurc" ]]; then
-  . "${HOME}/.dmenurc"
+	. "${HOME}/.dmenurc"
 else
-  DMENU='dmenu -i'
+	DMENU='dmenu -i'
 fi
 
 choice="$(echo -e "a: GB Colemak\nr:US\ns:DE" | $DMENU | cut -d ':' -f 1)"
 
 # keymap switch
 case "${choice}" in 
-  a) setxkbmap gb colemak && xset r 66 ;; 
-  r) setxkbmap us && xset r 66         ;;
-  s) setxkbmap de && xset r 66         ;;
+	a) setxkbmap gb colemak && xset r 66 ;; 
+	r) setxkbmap us && xset r 66         ;;
+	s) setxkbmap de && xset r 66         ;;
 esac
 
-# vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:

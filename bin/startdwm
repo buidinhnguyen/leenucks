@@ -2,8 +2,8 @@
 exec &>>~/.dwm.log    # log everything to ~/.dwm.log
 
 while true; do
-  ~/bin/dwmstatus &   # need to run the statusbar app in the background
-  dwm
+	~/bin/dwmstatus &   # need to run the statusbar app in the background
+	dwm
 done
 
-# vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:

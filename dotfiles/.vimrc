@@ -1,4 +1,4 @@
-" vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:
+" vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:
 "-----------------------------------------------
 " plugins/colorschemes used
 "-----------------------------------------------
@@ -50,13 +50,13 @@ set scrolloff=10   " keep 10 lines for scope
 " colorscheme (pyte colorscheme req)
 "-----------------------------------------------
 if (&term =~ 'linux')
-  set t_Co=16
-  set termencoding=utf-8
-  colorscheme desert
+	set t_Co=16
+	set termencoding=utf-8
+	colorscheme desert
 else
-  set t_Co=256
-  colorscheme pyte 
-  set termencoding=utf-8
+	set t_Co=256
+	colorscheme pyte
+	set termencoding=utf-8
 endif
 
 
@@ -65,7 +65,7 @@ endif
 "-----------------------------------------------
 " enable syntax-highlighting
 if has ("syntax")
-  syntax on
+	syntax on
 endif
 
 
@@ -88,16 +88,16 @@ set laststatus=2
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
 function! CurDir()
-  let curdir = substitute(getcwd(), '/home/uh', "~", "g")
-  return curdir
+	let curdir = substitute(getcwd(), '/home/uh', "~", "g")
+	return curdir
 endfunction
 
 function! HasPaste()
-  if &paste
-    return 'PASTE MODE  '
-  else
-    return ''
-  endif
+	if &paste
+		return 'PASTE MODE  '
+	else
+		return ''
+	endif
 endfunction
 
 
@@ -121,7 +121,7 @@ endif
 
 " display <tab>s, etc...
 set list
-set lcs=tab:│┈,trail:·,extends:>,precedes:<,nbsp:&
+set lcs=tab:│┈,extends:>,precedes:<,nbsp:&
 
 " colemak.vim
 source /usr/share/vim/vimfiles/keymap/colemak.vim
