@@ -19,4 +19,4 @@ curl -s -H "Authorization: OAuth ${OAUTH_TOKEN}" "https://mail.google.com/mail/f
 sed -e 's/<\// /g;s/>/ /g' |\
 awk '/^<fullcount/ { print $2 }' ## fugly sed_awk_crap (parsing feeds sucks)
 
-# vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:

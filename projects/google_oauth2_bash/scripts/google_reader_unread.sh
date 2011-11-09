@@ -4,9 +4,8 @@
 #  - Google_OAuth2.sh
 #  - curl
 #  - jshon (http://kmkeen.com/jshon/)
-#
-# TODO
-# rewrite using jshon instead of awk grep sed tr 
+#  - sed
+#  - wc
 #
 # source Google_OAuth2.sh
 Google_OAuth2_sh=$(which Google_OAuth2.sh)
@@ -15,16 +14,16 @@ source "${Google_OAuth2_sh}"
 
 OAUTH_TOKEN="$(jshon -e 'access_token' < ${DATADIR}/access_token )"
 
-# get the unread count for Google Reader using magic
-curl -s -H "Authorization: OAuth ${OAUTH_TOKEN}" "https://www.google.com/reader/api/0/unread-count?allcomments=false&output=json" |\
-tr -d '\n' |\
-tr '{' '\n' |\
-grep 'id.:.feed/' |\
-sed 's/.*"count":\([0-9]*\),".*/\1/' |\
-grep "^[0-9]*$" |\
-grep -v "^$" |\
-tr '\n' '+' |\
-sed 's/\(.*\)+/\1\n/' |\
-bc 
+uID=$(curl -s -H "Authorization: OAuth ${OAUTH_TOKEN}" \
+	"https://www.google.com/reader/api/0/user-info" |\
+	jshon -e 'userId' |\
+	sed -e 's/"//g'
+)
 
-# vim:fenc=utf-8:nu:ai:si:et:ts=2:sw=2:
+# get the unread count for Google Reader using magic
+curl -s -H "Authorization: OAuth ${OAUTH_TOKEN}" \
+"https://www.google.com/reader/api/0/stream/contents/user/${uID}/state/com.google/reading-list?xt=user/${uID}/state/com.google/read&n=9999" |\
+jshon -e 'items' -a -e 'title' |\
+wc -l
+
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:
