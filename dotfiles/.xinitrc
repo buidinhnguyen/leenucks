@@ -4,7 +4,7 @@ if [[ ! -e "/tmp/clipbored.pid" ]] ; then
 fi
 mpd ${XDG_CONFIG_HOME}/mpd/mpd.conf                 # mpd
 eval $(dbus-launch --sh-syntax --exit-with-session) # dbus
-. ${HOME}/.fehbg                                    # wallpaper
+bgs ~/files/pics/kyuubee.png                        # wallpaper
 xsetroot -cursor_name left_ptr                      # cursor
 xset -dpms s off                                    # disable screensaver and energy settings
 urxvtd -q -f -o                                     # start urxvt daemon

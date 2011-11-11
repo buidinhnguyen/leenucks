@@ -10,8 +10,8 @@ fi
 
 # variables
 export BROWSER="google-chrome"
-export LANG="en_US.utf8"
-export LC_ALL="en_US.utf8"
+export LANG="de_DE.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
 export EDITOR="vim"
 
 # colors in less

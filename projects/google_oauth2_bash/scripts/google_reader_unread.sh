@@ -14,14 +14,14 @@ source "${Google_OAuth2_sh}"
 
 OAUTH_TOKEN="$(jshon -e 'access_token' < ${DATADIR}/access_token )"
 
-uID=$(curl -s -H "Authorization: OAuth ${OAUTH_TOKEN}" \
+uID=$(curl -s -H "Authorization: Bearer ${OAUTH_TOKEN}" \
 	"https://www.google.com/reader/api/0/user-info" |\
 	jshon -e 'userId' |\
 	sed -e 's/"//g'
 )
 
 # get the unread count for Google Reader using magic
-curl -s -H "Authorization: OAuth ${OAUTH_TOKEN}" \
+curl -s -H "Authorization: Bearer ${OAUTH_TOKEN}" \
 "https://www.google.com/reader/api/0/stream/contents/user/${uID}/state/com.google/reading-list?xt=user/${uID}/state/com.google/read&n=9999" |\
 jshon -e 'items' -a -e 'title' |\
 wc -l

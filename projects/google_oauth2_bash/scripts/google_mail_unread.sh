@@ -15,7 +15,7 @@ source "${Google_OAuth2_sh}"
 OAUTH_TOKEN="$(jshon -e 'access_token' < ${DATADIR}/access_token )"
 
 # get the unread count for GMail using magic
-curl -s -H "Authorization: OAuth ${OAUTH_TOKEN}" "https://mail.google.com/mail/feed/atom" |\
+curl -s -H "Authorization: Bearer ${OAUTH_TOKEN}" "https://mail.google.com/mail/feed/atom" |\
 sed -e 's/<\// /g;s/>/ /g' |\
 awk '/^<fullcount/ { print $2 }' ## fugly sed_awk_crap (parsing feeds sucks)
 

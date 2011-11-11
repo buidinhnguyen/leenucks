@@ -18,6 +18,6 @@ OAUTH_TOKEN="$(jshon -e 'access_token' < ${DATADIR}/access_token )"
 BACKUP_FILE="${HOME}/files/backups/Subscriptions-${DT}.opml"
 
 # get the reader subscriptions as an opml file and save them in ~/files/backups as Subscriptions-YYYYMMDD.opml
-curl -s -o "${BACKUP_FILE}" -H "Authorization: OAuth ${OAUTH_TOKEN}" "https://www.google.com/reader/subscriptions/export"
+curl -s -o "${BACKUP_FILE}" -H "Authorization: Bearer ${OAUTH_TOKEN}" "https://www.google.com/reader/subscriptions/export"
 
 # vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:

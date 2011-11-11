@@ -126,3 +126,5 @@ set lcs=tab:│┈,extends:>,precedes:<,nbsp:&
 " colemak.vim
 source /usr/share/vim/vimfiles/keymap/colemak.vim
 
+" calendar starts with monday
+let g:calendar_monday = 1
