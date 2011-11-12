@@ -128,8 +128,3 @@ macro index Z   "<shell-escape>offlineimap -q -o<return>" "sync IMAP"
 macro generic,index,pager \Ca "<shell-escape>abook<return>" "launch abook"
 macro index,pager         A   "<pipe-message>abook --add-email<return>" "add sender to abook"
 
-# cc myself when replying to an ML; note: with this, you can't just :q!
-# mid-compose to abort; instead, just :wq and abort from the compose
-# menu
-unhook send-hook
-send-hook "~u" "push '<edit-cc>,@gmail.com<enter>'"
