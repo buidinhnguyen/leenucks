@@ -2,7 +2,7 @@
 # ${XDG_CONFIG_HOME}/zsh/aliases
 # zsh aliases
 ##
-# pacman
+# pacman {{{1
 alias pacman='sudo pacman'
 alias Qi='pacman -Qi'
 alias Qm='pacman -Qm'
@@ -18,16 +18,16 @@ alias Syu='pacman -Syu'
 alias U='pacman -U'
 alias cower='cower --color=always'
 
-# auto extensions
+# auto extensions {{{1
 alias -s {txt,c,cpp,hs,py,pl}=${EDITOR}
 alias -s {error,errors}='less'
-alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF}='feh'
+alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF}='sxiv'
 alias -s {mpg,mpeg,avi,ogm,ogv,wmv,m4v,mp4,mov,f4v,mkv,flv}='mplayer'
 alias -s {mp3,ogg,wav,flac}='mplayer'
 alias -s {odt,doc,docx,ppt,pptx,xls,xlsx,rtf}='libreoffice'
 alias -s pdf='zathura'
 
-# classics!
+# classics! {{{1
 alias ls='ls -G --color=auto'
 alias lsa='ls -G -a --group-directories-first'
 alias lsl='ls -G -l -F -k -h --group-directories-first'
@@ -41,12 +41,12 @@ alias mem="free -m"
 alias :q='exit'
 alias :Q=':q'
 
-# global
+# global {{{1
 alias -g L='| less'
 alias -g G='| egrep --color=auto -n'
 alias -g W='| wgetpaste'
 
-# things
+# things {{{1
 alias ftp='ncftp'
 alias ncm='ncmpcpp'
 alias gox='startx & vlock'
@@ -54,6 +54,6 @@ alias feh='feh -g 1600x1000 -d'
 alias ud="sudo lsof | grep 'DEL.*lib' | cut -f 1 -d ' ' | sort -u"
 alias torr="dtach -a /tmp/torr"
 
-# vim
+# vim {{{1
 alias sv='sudo vim'
 
