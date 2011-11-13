@@ -27,4 +27,4 @@ case $1 in
 	;;
 esac
 
-# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:

@@ -1,8 +1,7 @@
 #!/bin/zsh
-# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:
 
 echo "The databases in '${HOME}/.mozilla' are being optimized..."
 for i in $(find ~/.mozilla -name \*.sqlite); sqlite3 $i vacuum
 for i in $(find ~/.mozilla -name \*.sqlite); sqlite3 $i reindex
 echo "Done."
-

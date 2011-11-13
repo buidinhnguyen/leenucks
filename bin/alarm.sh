@@ -9,4 +9,4 @@ amixer -q -c0 set Master 100 unmute
 
 amixer -q -c0 set Master 80 unmute
 
-# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:

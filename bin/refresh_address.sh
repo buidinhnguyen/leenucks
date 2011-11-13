@@ -27,4 +27,4 @@ for i in "${acc1}" "${acc2}" ; do
 	IFS=o
 done
 
-# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:

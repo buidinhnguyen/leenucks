@@ -1,5 +1,7 @@
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:
 #!/bin/bash
 
+# net {{{1
 net() {
 	kib=$[2**10]
 	net=eth0;
@@ -19,14 +21,14 @@ net() {
 	echo -e "${rcv_speed}/${snd_speed} | "
 }
 
-# free diskspace in %
+# free diskspace in % {{{1
 disk() {
 	root=$(df -P | awk '/root/ { print $5 }')
 	home=$(df -P | awk '/home/ { print $5 }')
 	echo "${root}/${home} | "
 }
 
-# mpd playing
+# mpd playing {{{1
 music() {
 	mpc=$(mpc current) 
 	mpcradio=$(mpc current | cut -c 53-120)
@@ -40,7 +42,8 @@ music() {
 	fi
 }
 
-# uptime
+# uptime {{{
+1
 up() {
 	up=$(</proc/uptime)
 	u=${up%%.*}
@@ -56,7 +59,7 @@ up() {
 	fi
 }
 
-# date or mute
+# date or mute {{{1
 dm() {
 	d=$(date +'%d/%m/%y %H:%M')
 	dm=$(date +'%H:%M')
@@ -68,10 +71,10 @@ dm() {
 	fi
 }
 
+# output {{{1
 while true; do
 #xsetroot -name "$(music)$(net)$(disk)$(up)$(dm)"
 	xsetroot -name "[ $(dm)"
 	sleep 1
 done
 
-# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:

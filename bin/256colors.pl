@@ -6,7 +6,7 @@
 # reproduction of the standard ANSI colors, but possibly more
 # pleasing shades
 
-# colors 16-231 are a 6x6x6 color cube
+# colors 16-231 are a 6x6x6 color cube {{{1
 for ($red = 0; $red < 6; $red++) {
 	for ($green = 0; $green < 6; $green++) {
 		for ($blue = 0; $blue < 6; $blue++) {
@@ -18,19 +18,15 @@ for ($red = 0; $red < 6; $red++) {
 		}
 	}
 }
-
-# colors 232-255 are a grayscale ramp, intentionally leaving out
-# black and white
+# colors 232-255 are a grayscale ramp, intentionally leaving out {{{1
+# black and white 
 for ($gray = 0; $gray < 24; $gray++) {
 	$level = ($gray * 10) + 8;
 	printf("\x1b]4;%d;rgb:%2.2x/%2.2x/%2.2x\x1b\\",
 	232 + $gray, $level, $level, $level);
 }
-
-
 # display the colors
-
-# first the system ones:
+# first the system ones: {{{1 
 print "System colors:\n";
 for ($color = 0; $color < 8; $color++) {
 	print "\x1b[48;5;${color}m  ";
@@ -40,8 +36,7 @@ for ($color = 8; $color < 16; $color++) {
 	print "\x1b[48;5;${color}m  ";
 }
 print "\x1b[0m\n\n";
-
-# now the color cube
+# now the color cube {{{1
 print "Color cube, 6x6x6:\n";
 for ($green = 0; $green < 6; $green++) {
 	for ($red = 0; $red < 6; $red++) {
@@ -53,13 +48,11 @@ for ($green = 0; $green < 6; $green++) {
 	}
 	print "\n";
 }
-
-
-# now the grayscale ramp
+# now the grayscale ramp {{{1
 print "Grayscale ramp:\n";
 for ($color = 232; $color < 256; $color++) {
 	print "\x1b[48;5;${color}m  ";
 }
 print "\x1b[0m\n";
 
-# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:

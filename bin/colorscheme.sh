@@ -1,12 +1,14 @@
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:
 #!/bin/bash
 # Original: http://frexx.de/xterm-256-notes/
 #           http://frexx.de/xterm-256-notes/data/colortable16.sh
 # Modified by Aaron Griffin
 # and further by Kazuo Teramoto
 
-
+# color definitions {{{1
 FGNAMES=(' black ' '  red  ' ' green ' ' yellow' '  blue ' 'magenta' '  cyan ' ' white ')
 BGNAMES=('DFT' 'BLK' 'RED' 'GRN' 'YEL' 'BLU' 'MAG' 'CYN' 'WHT')
+# script {{{1
 echo "     ----------------------------------------------------------------------------"
 for b in $(seq 0 8); do
 	if [ "$b" -gt 0 ]; then
@@ -31,6 +33,3 @@ for b in $(seq 0 8); do
 	fi
 done
 echo "      ----------------------------------------------------------------------------"
-
-
-# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:

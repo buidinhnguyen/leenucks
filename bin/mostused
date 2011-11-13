@@ -5,6 +5,7 @@
 IFS=$'\t\n'
 PATH=${PATH}:${HOME}/bin
 
+# apps {{{
 apps="dmenuclip
 dmenurl
 gajim
@@ -23,8 +24,9 @@ st-dvtm
 virtualbox
 vms
 widelands"
+# }}}
 
 $(echo ${apps} |\
  dmenu -i -fn 'Proggyoptis-8' -nb '#cccccc' -nf '#000000' -sb '#cccccc' -sf '#0066ff' )
 
-# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:

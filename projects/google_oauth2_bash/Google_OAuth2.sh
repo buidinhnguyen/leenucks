@@ -1,6 +1,7 @@
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:
 #!/bin/bash
 #
-# Requirements:
+# Requirements: {{{1
 #  - curl
 #  - jshon (http://kmkeen.com/jshon/)
 #  - sed
@@ -9,24 +10,20 @@
 # TODO:
 #  multiple accounts (?)
 #
-
-## hardcoded strings
+## hardcoded strings {{{1
 DATADIR="${XDG_DATA_HOME:-${HOME}/.local/share}/google_oauth2"
 CONFDIR="${XDG_CONFIG_HOME:-${HOME}/.config}/google_oauth2"
 CONFIG="${CONFDIR}/ggloauthrc"
 # register your client in Google APIs console (http://code.google.com/apis/console#access) and change the following:
 CLIENT_ID="1066434597262.apps.googleusercontent.com"
 CLIENT_SECRET="iDotuISm0gjN-TGMVP47jop5"
-
-# test for needed directories
+# test for needed directories {{{1
 [[ ! -d "${DATADIR}" ]] && mkdir -p "${DATADIR}"
 [[ ! -d "${CONFDIR}" ]] && mkdir -p "${CONFDIR}"
-
-# configfile exists? get variables
+# configfile exists? get variables {{{1
 [[ -e "${CONFIG}" ]] && AUTH="$(jshon -e 'authorization_granted' < ${CONFIG})"
 [[ -e "${CONFIG}" ]] && REFRESH_TOKEN="$(jshon -e 'refresh_token' < ${CONFIG} | sed -e 's/"//g')"
-
-## authorize the application
+## authorize the application {{{1
 # look for scopes in Google APIs documentation
 # this example: Access to Google Reader export, Google Reader API && gmail feed
 ### change it accordingly and don't forget to include %20 when using multiple scopes ###
@@ -37,8 +34,7 @@ token_auth() {
 	response_type=code&\
 	scope=https://www.google.com/reader/subscriptions/export%20https://www.google.com/reader/api/%20https://mail.google.com/mail/feed/atom"
 }
-
-## get the first tokens, grant the access and delete the unneccessary files
+## get the first tokens, grant the access and delete the unneccessary files {{{1
 token_get() {
 curl -s "https://accounts.google.com/o/oauth2/token" \
 	-d "client_id=${CLIENT_ID}" \
@@ -70,8 +66,7 @@ curl -s "https://accounts.google.com/o/oauth2/token" \
 
 	rm "${CONFDIR}/tokens"
 }
-
-## delete the old access token and refresh your access token
+## delete the old access token and refresh your access token {{{1 
 token_refresh() {
 	[[ -e "${DATADIR}/access_token" ]] && rm "${DATADIR}/access_token"
 
@@ -82,9 +77,9 @@ token_refresh() {
 	-d "grant_type=refresh_token" \
 	-o "${DATADIR}/access_token"
 }
-
-## Start the program
-# does a configfile already exist? if no, then get authorized and get the tokens
+## Start the program {{{1
+#}}}
+# does a configfile already exist? if no, then get authorized and get the tokens {{{1
 if [[ ! -e "${CONFIG}" ]] ; then
 	# Are we using X?
 	X=$(ps --no-headers -C X)
@@ -97,10 +92,7 @@ if [[ ! -e "${CONFIG}" ]] ; then
 	echo "access_token:  ${DATADIR}/access_token"
 	echo "refresh_token: ${CONFIG}"
 fi
-
-# access token is expired? get a new one
+# access token is expired? get a new one {{{1
 EXPIRY=$(jshon -e 'expires_in' < ${DATADIR}/access_token )
 FILEAGE=$(($(date +%s) - $(stat -c '%Y' "${DATADIR}/access_token")))
 (( "${FILEAGE}" > "${EXPIRY}" )) && token_refresh
-
-# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:
