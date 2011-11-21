@@ -26,7 +26,6 @@
 :NERDTreeFromBookmark	NERD_tree.txt	/*:NERDTreeFromBookmark*
 :NERDTreeMirror	NERD_tree.txt	/*:NERDTreeMirror*
 :NERDTreeToggle	NERD_tree.txt	/*:NERDTreeToggle*
-:Uptime	uptime.txt	/*:Uptime*
 NERDTree	NERD_tree.txt	/*NERDTree*
 NERDTree-?	NERD_tree.txt	/*NERDTree-?*
 NERDTree-A	NERD_tree.txt	/*NERDTree-A*
@@ -86,9 +85,3 @@ NERDTreeOptionSummary	NERD_tree.txt	/*NERDTreeOptionSummary*
 NERDTreeOptions	NERD_tree.txt	/*NERDTreeOptions*
 NERDTreeRender()	NERD_tree.txt	/*NERDTreeRender()*
 NERD_tree.txt	NERD_tree.txt	/*NERD_tree.txt*
-uptime	uptime.txt	/*uptime*
-uptime-arguments	uptime.txt	/*uptime-arguments*
-uptime-changelog	uptime.txt	/*uptime-changelog*
-uptime-contents	uptime.txt	/*uptime-contents*
-uptime-statusline	uptime.txt	/*uptime-statusline*
-uptime.txt	uptime.txt	/*uptime.txt*
