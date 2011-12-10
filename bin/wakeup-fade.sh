@@ -20,7 +20,7 @@
 MPC=$(which mpc)
 AMIXER=$(which amixer)
 BC="$(which bc) -l"
-MPDRUNFILE="$XDG_CONFIG_HOME/mpd/pid1"
+MPDRUNFILE="$XDG_CONFIG_HOME/mpd/pid"
 VOLUME="$1"
 
 #backup_wakeup function {{{1
