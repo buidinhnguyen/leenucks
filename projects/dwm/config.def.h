@@ -34,7 +34,7 @@ static const Rule rules[] = {
 	{ "feh",            NULL,       NULL,          0,            True,        -1 },
 	{ "openttd",        NULL,       NULL,          0,            True,        -1 },
 	{ "sxiv",           NULL,       NULL,          0,            True,        -1 },
-	{ "MPlayer",        NULL,       NULL,          0,            True,        -1 },
+	{ "mplayer2",       NULL,       NULL,          0,            True,        -1 },
 	{ "XFontSel",       NULL,       NULL,          0,            True,        -1 },
 	{ "Zathura",        NULL,       NULL,          0,            True,        -1 },
 	{ NULL,             NULL,       "Save file",   0,            True,        -1 },
