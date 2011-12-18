@@ -1,9 +1,8 @@
-# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:
-#!/bin/bash
+#!/bin/sh
 
 # net {{{1
 net() {
-	kib=$[2**10]
+	kib=$((2^10))
 	net=eth0;
 
 	old_rcv=$(cat /sys/class/net/${net}/statistics/rx_bytes)
@@ -12,8 +11,8 @@ net() {
 	new_rcv=$(cat /sys/class/net/${net}/statistics/rx_bytes)
 	new_snd=$(cat /sys/class/net/${net}/statistics/tx_bytes)
 
-	size_rcv=$[${new_rcv} - ${old_rcv}]
-	size_snd=$[${new_snd} - ${old_snd}]
+	size_rcv=$((${new_rcv} - ${old_rcv}))
+	size_snd=$((${new_snd} - ${old_snd}))
 
 	rcv_speed=$(printf "%1.2f\n" $(echo "scale=2; (${new_rcv} - ${old_rcv}) / ${kib}" | bc)) 
 	snd_speed=$(printf "%1.2f KiB/s\n" $(echo "scale=2; (${new_snd} - ${old_snd}) / ${kib}" | bc))
@@ -33,26 +32,25 @@ music() {
 	mpc=$(mpc current) 
 	mpcradio=$(mpc current | cut -c 53-120)
 	mpcr=$(mpc current | grep -c Radio)
-	if [[ -z "${mpc}" ]] ; then
+	if [ -z "${mpc}" ] ; then
 		echo -e "[ MPD stopped | "
-	elif [[ "${mpcr}" -eq "1" ]] ; then
+	elif [ "${mpcr}" -eq "1" ] ; then
 		echo -n "[ ${mpcradio} | "
 	else
 		echo -n "[ ${mpc} | "
 	fi
 }
 
-# uptime {{{
-1
+# uptime {{{1
 up() {
-	up=$(</proc/uptime)
+	up=$(cat /proc/uptime)
 	u=${up%%.*}
 
-	m=$[u/60%60]
-	h=$[u/3600%24]
-	d=$[u/60/60/24]
+	m=$((u/60%60))
+	h=$((u/3600%24))
+	d=$((u/60/60/24))
 
-	if [[ "${d}" -gt "0" ]] ; then
+	if [ "${d}" -gt "0" ] ; then
 		echo -e "${d}d ${h}:${m} | "
 	else
 		echo -e "${h}:${m} | "
@@ -78,3 +76,4 @@ while true; do
 	sleep 1
 done
 
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:
