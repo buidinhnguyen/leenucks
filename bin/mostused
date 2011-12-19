@@ -1,8 +1,8 @@
-#!/bin/zsh
+#!/bin/sh
 #
 # most used apps via dmenu
 
-IFS=$'\t\n'
+IFS=$(printf '\t\n')
 PATH=${PATH}:${HOME}/bin
 
 # apps {{{

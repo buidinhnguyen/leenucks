@@ -1,5 +1,5 @@
+#!/bin/sh
 # vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:
-#!/bin/bash
 # Original: http://frexx.de/xterm-256-notes/
 #           http://frexx.de/xterm-256-notes/data/colortable16.sh
 # Modified by Aaron Griffin

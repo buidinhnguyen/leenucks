@@ -1,5 +1,5 @@
-# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:
 #!/usr/bin/perl
+# vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:
 
 use strict;
 use warnings;

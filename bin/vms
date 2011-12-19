@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 #
 # get a list of vms you have in VirtualBox and start them via dmenu
 
@@ -6,6 +6,6 @@ vboxmanage startvm --type gui $(vboxmanage list vms |\
  sed -e 's/"//g' |\
  cut -f1 -d ' ' |\
  dmenu -i -fn 'Proggyoptis-8' -nb '#cccccc' -nf '#000000' -sb '#cccccc' -sf '#0066ff' -p "VM" )\
- &>/dev/null
+ >/dev/null 2>&1
 
 # vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:

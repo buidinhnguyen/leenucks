@@ -1,5 +1,5 @@
 #!/bin/sh
-exec &>>~/.dwm.log    # log everything to ~/.dwm.log
+exec >~/.dwm.log 2>&1 # log everything to ~/.dwm.log
 
 while true; do
 	~/bin/dwmstatus &   # need to run the statusbar app in the background

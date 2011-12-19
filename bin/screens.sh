@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 #
 # screens via dmenu
 
 screens="a: torrent+mutt\nr:irssi+newsbeuter"
 
-if [[ -f "$HOME/.dmenurc" ]]; then
+if [ -f "$HOME/.dmenurc" ]; then
 	. "$HOME/.dmenurc"
 else
 	DMENU='dmenu -i'
@@ -15,7 +15,7 @@ choice="$(echo -e ${screens} | $DMENU | cut -d ':' -f 1)"
 case "${choice}" in
 	a)
 		# torrent+mutt
-		if [[ -z "$(screen -ls | grep torrent)" ]] ; then      # does it exist?
+		if [ -z "$(screen -ls | grep torrent)" ] ; then      # does it exist?
 			urxvtc -e screen -S torrent -c ${HOME}/.screen/tr    # no: create it
 		else
 			urxvtc -e screen -r torrent                          # yes: switch to it
@@ -23,7 +23,7 @@ case "${choice}" in
 		;;
 	r)
 	# irssi+newsbeuter screen
-	if [[ -z "$(screen -ls | grep irc)" ]] ; then          # does it exist?
+	if [ -z "$(screen -ls | grep irc)" ] ; then          # does it exist?
 		urxvtc -e screen -S irc -c ${HOME}/.screen/irc       # no: create it
 	else
 		urxvtc -e screen -r irc                              # yes: switch to it

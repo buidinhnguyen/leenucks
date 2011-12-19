@@ -1,5 +1,5 @@
+#!/bin/sh
 # vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:
-#!/bin/bash
 # 
 #
 
@@ -24,14 +24,14 @@ redditchk() {
 	local CRED="${XDG_CONFIG_HOME}/reddit/redditcredentials"
 	local redditusername redditpassword
 
-	if [[ -r "${CRED}" ]]; then
-		source "${CRED}"
+	if [ -r "${CRED}" ]; then
+		. "${CRED}"
 	else
 		echo "Error: missing ${CRED}"
 		return 1
 	fi
 
-	if [[ ! -r "${COOKIE}" ]]; then
+	if [ ! -r "${COOKIE}" ]; then
 		curl -d user="${redditusername}" -d passwd="${redditpassword}" -c "${COOKIE}" -s -o /dev/null http://www.reddit.com/api/login
 		chmod 600 "${COOKIE}"
 	fi
@@ -45,7 +45,7 @@ redditchk() {
 	'
 }
 
-if [[ "$(ping -qc1 heise.de 2> /dev/null)" ]] ; then
+if [ "$(ping -qc1 heise.de 2> /dev/null)" ] ; then
 	gmail0 
 	gmail1 
 	greader 

@@ -1,11 +1,11 @@
+#!/bin/sh
 # vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:
-#!/bin/bash
 #
 # keymap switcher
 #
 ###
 # check for ~/.dmenurc {{{1
-if [[ -f "${HOME}/.dmenurc" ]]; then
+if [ -f "${HOME}/.dmenurc" ]; then
 	. "${HOME}/.dmenurc"
 else
 	DMENU='dmenu -i'

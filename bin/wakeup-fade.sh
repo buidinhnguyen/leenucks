@@ -1,5 +1,5 @@
+#!/bin/sh
 # vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:
-#!/bin/bash
 #
 # alarm script working with mpd/mpc or mplayer/xterm
 #
@@ -29,13 +29,13 @@ backup_wakeup() {
 }
 
 # starter_help {{{1
-if [[ "$#" -ne "3" ]] ; then
+if [ "$#" -ne "3" ] ; then
 	echo "usage: $(basename $0) <start volume> <end volume> <length in secs>" ;
 	exit 1 ;
 fi
 
 # check if mpd is running, and with some files to play {{{1
-if [[ -e "$MPDRUNFILE" ]] ; then
+if [ -e "$MPDRUNFILE" ] ; then
 	$MPC -q stop
 	sleep 1
 	$MPC -q play
@@ -50,14 +50,14 @@ else
 fi
 
 # volume fade {{{1
-if [[ "$1" -lt "$2" ]] ; then
-	while [[ "$VOLUME" -le "$2" ]] ; do
+if [ "$1" -lt "$2" ] ; then
+	while [ "$VOLUME" -le "$2" ] ; do
 		$AMIXER -q -c 0 set Master "$VOLUME" unmute > /dev/null ;
 		VOLUME="$(($VOLUME + 1))" ;
 		sleep $(echo "$3/($2-$1)" | $BC) ;
 	done
 else
-	while [[ "$VOLUME" -ge "$2" ]] ; do
+	while [ "$VOLUME" -ge "$2" ] ; do
 		$AMIXER -q -c 0 set Master "$VOLUME" unmute > /dev/null ;
 		VOLUME=$(($VOLUME - 1)) ;
 		sleep $(echo "$3/($1-$2)" | $BC) ;

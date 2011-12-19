@@ -1,11 +1,11 @@
+#!/bin/sh
 # vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:
-#!/bin/bash
 #
 # a simple logout dialog
 #
 ###
 choice_by_dmenu() {
-if [[ -f "${HOME}/.dmenurc" ]]; then
+if [ -f "${HOME}/.dmenurc" ]; then
 	. "${HOME}/.dmenurc"
 else
 	DMENU='dmenu -i'
@@ -15,11 +15,11 @@ fi
 }
 
 # are we on X and is a choice being used?
-[[ -z "$DISPLAY" ]] && exit 1
+[ -z "$DISPLAY" ] && exit 1
 
 choice_by_dmenu
 
-[[ -z "$choice" ]] && exit 1
+[ -z "$choice" ] && exit 1
 
 # execute the choice in background 
 case "$choice" in

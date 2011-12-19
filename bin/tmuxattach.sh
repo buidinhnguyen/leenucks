@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
 TMX="$(pgrep tmux)"
 
-if [[ -z "${TMX}" ]] ; then
+if [ -z "${TMX}" ] ; then
 	tmux start
 else
 	urxvtc -e tmux attach-session

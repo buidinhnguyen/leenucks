@@ -1,5 +1,5 @@
+#!/bin/sh
 # vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:
-#!/bin/bash
 # animechecker by lolilolicon (https://bbs.archlinux.org/viewtopic.php?id=74587)
 ### quick check CRC32 of anime videos with a filename in the format of "[gg]_Eden_of_the_East_-_11_[BF3AA75E].mkv"
 ### Simple output with two colors.
@@ -13,11 +13,11 @@ end_clr="\x1b[00;00m"
 for anime ; do
 	TEMP=$( cksfv -b -q "$anime" | sed '/^;/d;s/.*\[\(........\)\]\.[^\.]* \(........\)$/\1-->\2/' )
 	echo "$TEMP" | grep -- "-->" &>/dev/null
-	if [ "$?" == 0 ]; then
+	if [ "$?" = 0 ]; then
 		my_crc="${TEMP%-->*}"
 		src_crc=${TEMP#*-->}
 		anime=$( basename "$anime" )
-		if [ "$my_crc" == "$src_crc" ] ; then
+		if [ "$my_crc" = "$src_crc" ] ; then
 			printf "$anime ...$yes_clr YES $end_clr\n"
 		else
 			printf "$anime ...$no_clr NO! \n\t$TEMP $end_clr\n"

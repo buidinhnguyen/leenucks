@@ -1,5 +1,5 @@
+#!/bin/sh
 # vim:fenc=utf-8:nu:ai:si:ts=2:sw=2:fdm=marker:
-#!/bin/bash
 #
 # Requirements: {{{1
 #  - curl
@@ -18,11 +18,11 @@ CONFIG="${CONFDIR}/ggloauthrc"
 CLIENT_ID="1066434597262.apps.googleusercontent.com"
 CLIENT_SECRET="iDotuISm0gjN-TGMVP47jop5"
 # test for needed directories {{{1
-[[ ! -d "${DATADIR}" ]] && mkdir -p "${DATADIR}"
-[[ ! -d "${CONFDIR}" ]] && mkdir -p "${CONFDIR}"
+[ ! -d "${DATADIR}" ] && mkdir -p "${DATADIR}"
+[ ! -d "${CONFDIR}" ] && mkdir -p "${CONFDIR}"
 # configfile exists? get variables {{{1
-[[ -e "${CONFIG}" ]] && AUTH="$(jshon -e 'authorization_granted' < ${CONFIG})"
-[[ -e "${CONFIG}" ]] && REFRESH_TOKEN="$(jshon -e 'refresh_token' < ${CONFIG} | sed -e 's/"//g')"
+[ -e "${CONFIG}" ] && AUTH="$(jshon -e 'authorization_granted' < ${CONFIG})"
+[ -e "${CONFIG}" ] && REFRESH_TOKEN="$(jshon -e 'refresh_token' < ${CONFIG} | sed -e 's/"//g')"
 ## authorize the application {{{1
 # look for scopes in Google APIs documentation
 # this example: Access to Google Reader export, Google Reader API && gmail feed
@@ -44,7 +44,7 @@ curl -s "https://accounts.google.com/o/oauth2/token" \
 	-d "grant_type=authorization_code" \
 	-o "${CONFDIR}/tokens"
   
-	[[ -e "${DATADIR}/access_token" ]] && rm "${DATADIR}/access_token"
+	[ -e "${DATADIR}/access_token" ] && rm "${DATADIR}/access_token"
 
 	ACCESS_TOKEN=$(jshon -e 'access_token' < "${CONFDIR}/tokens")
 	EXPIRY_TIME=$(jshon -e 'expires_in' < "${CONFDIR}/tokens")
@@ -68,7 +68,7 @@ curl -s "https://accounts.google.com/o/oauth2/token" \
 }
 ## delete the old access token and refresh your access token {{{1 
 token_refresh() {
-	[[ -e "${DATADIR}/access_token" ]] && rm "${DATADIR}/access_token"
+	[ -e "${DATADIR}/access_token" ] && rm "${DATADIR}/access_token"
 
 	curl -s https://accounts.google.com/o/oauth2/token \
 	-d "client_id=${CLIENT_ID}" \
@@ -80,10 +80,10 @@ token_refresh() {
 ## Start the program {{{1
 #}}}
 # does a configfile already exist? if no, then get authorized and get the tokens {{{1
-if [[ ! -e "${CONFIG}" ]] ; then
+if [ ! -e "${CONFIG}" ] ; then
 	# Are we using X?
 	X=$(ps --no-headers -C X)
-	[[ -z "${X}" ]] && echo "Need X, exiting" && exit 1
+	[ -z "${X}" ] && echo "Need X, exiting" && exit 1
   
 	token_auth
 	echo -e "Copy and paste the authorization code and press Enter:"
@@ -95,4 +95,4 @@ fi
 # access token is expired? get a new one {{{1
 EXPIRY=$(jshon -e 'expires_in' < ${DATADIR}/access_token )
 FILEAGE=$(($(date +%s) - $(stat -c '%Y' "${DATADIR}/access_token")))
-(( "${FILEAGE}" > "${EXPIRY}" )) && token_refresh
+$(( "${FILEAGE}" > "${EXPIRY}" )) && token_refresh
