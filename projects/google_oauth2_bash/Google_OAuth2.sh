@@ -92,7 +92,11 @@ if [ ! -e "${CONFIG}" ] ; then
 	echo "access_token:  ${DATADIR}/access_token"
 	echo "refresh_token: ${CONFIG}"
 fi
+
 # access token is expired? get a new one {{{1
 EXPIRY=$(jshon -e 'expires_in' < ${DATADIR}/access_token )
 FILEAGE=$(($(date +%s) - $(stat -c '%Y' "${DATADIR}/access_token")))
-$(( "${FILEAGE}" > "${EXPIRY}" )) && token_refresh
+
+if [ "${FILEAGE}" -ge "${EXPIRY}" ] ; then
+	token_refresh
+fi

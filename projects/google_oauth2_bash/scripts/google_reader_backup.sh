@@ -10,8 +10,12 @@
 PATH="/home/uh/bin:${PATH}"
 # source Google_OAuth2.sh
 Google_OAuth2_sh=$(which Google_OAuth2.sh)
-$(( $? != 0 )) && echo "Unable to locate Google_OAuth2.sh. Put it in PATH." && exit 1
-. "${Google_OAuth2_sh}"
+if [ -e "${Google_OAuth2_sh}" ] ; then
+	. "${Google_OAuth2_sh}"
+else
+	echo "Unable to locate Google_OAuth2.sh. Put it in PATH."
+	exit 1
+fi
 
 # variables {{{1
 DT=$(date +"%Y%m%d")

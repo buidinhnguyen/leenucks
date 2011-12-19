@@ -10,8 +10,12 @@
 #
 # source Google_OAuth2.sh {{{1
 Google_OAuth2_sh=$(which Google_OAuth2.sh)
-$(( $? != 0 )) && echo "Unable to locate Google_OAuth2.sh. Put it in PATH." && exit 1
-. "${Google_OAuth2_sh}"
+if [ -e "${Google_OAuth2_sh}" ] ; then
+	. "${Google_OAuth2_sh}"
+else
+	echo "Unable to locate Google_OAuth2.sh. Put it in PATH."
+	exit 1
+fi
 # variables {{{1
 OAUTH_TOKEN="$(jshon -e 'access_token' < ${DATADIR}/access_token )"
 uID=$(curl -s -H "Authorization: Bearer ${OAUTH_TOKEN}" \
