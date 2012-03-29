@@ -10,11 +10,9 @@ static const char selbgcolor[]      = "#cccccc";
 static const char selfgcolor[]      = "#0066ff";
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const int nmaster            = 2;        /* default number of clients in the master area */
+static const int nmaster            = 2;        /* number of clients in master area */
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
-
-#include "nmaster-ncol.c"
 
 /* tagging */
 static const char *tags[] = { "1/main", "2/web", "3/foo" };
@@ -33,7 +31,7 @@ static const Rule rules[] = {
 	{ NULL,             NULL,       "LibreOffice", 1 << 2,       False,       -1 },
 	{ "feh",            NULL,       NULL,          0,            True,        -1 },
 	{ "openttd",        NULL,       NULL,          0,            True,        -1 },
-	{ "sxiv",           NULL,       NULL,          0,            True,        -1 },
+	{ "Sxiv",           NULL,       NULL,          0,            True,        -1 },
 	{ "mplayer2",       NULL,       NULL,          0,            True,        -1 },
 	{ "XFontSel",       NULL,       NULL,          0,            True,        -1 },
 	{ "Zathura",        NULL,       NULL,          0,            True,        -1 },
@@ -46,10 +44,9 @@ static const Bool resizehints = False; /* True means respect size hints in tiled
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "-|=",      ntile },    /* nmaster tiling */
-	{ "-|-",      nbstack },  /* nmaster bottomstack */
-	{ "[M]",      monocle },  /* maximized */
-	{ "><>",      NULL },     /* floating */
+	{ "[T]",      tile },        /* first entry is default */
+	{ "[M]",      monocle },     /* maximized */
+	{ "><>",      NULL },        /* floating */
 };
 
 /* key definitions */
@@ -85,7 +82,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_a,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_z,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_x,      setnmaster,     {.i = 2 } },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_b,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },

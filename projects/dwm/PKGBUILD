@@ -1,5 +1,5 @@
 pkgname=dwm
-pkgver=5.9
+pkgver=6.0
 pkgrel=1
 pkgdesc="A dynamic window manager for X"
 url="http://dwm.suckless.org"
@@ -9,19 +9,14 @@ options=(zipman)
 depends=('libx11')
 source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz \
         config.def.h
-        dwm-$pkgver-centered-floating.diff
-        dwm-$pkgver-nmaster-ncol.c
-        dwm-$pkgver-popupbar.diff)
+        dwm-$pkgver-centered-floating.diff)
 . md5sums
 build() {
   cd "$srcdir/$pkgname-$pkgver"
 
-  cp "$srcdir"/$pkgname-"$pkgver"-nmaster-ncol.c nmaster-ncol.c
-
   cp "$srcdir"/config.def.h config.h
 
   patch -p1 < ../dwm-"$pkgver"-centered-floating.diff
-  patch -p1 < ../dwm-"$pkgver"-popupbar.diff
 
   sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
   sed -i 's/CFLAGS =/CFLAGS +=/g' config.mk

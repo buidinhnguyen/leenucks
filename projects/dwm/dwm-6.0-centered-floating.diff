@@ -1,0 +1,52 @@
+--- dwm-6.0-old/dwm.c	2012-03-29 21:32:00.104990927 +0200
++++ dwm-6.0/dwm.c	2012-03-29 21:37:50.428649630 +0200
+@@ -90,7 +90,7 @@
+ 	int basew, baseh, incw, inch, maxw, maxh, minw, minh;
+ 	int bw, oldbw;
+ 	unsigned int tags;
+-	Bool isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
++	Bool isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen, iscentered;
+ 	Client *next;
+ 	Client *snext;
+ 	Monitor *mon;
+@@ -151,6 +151,7 @@
+ 	const char *title;
+ 	unsigned int tags;
+ 	Bool isfloating;
++	Bool iscentered;
+ 	int monitor;
+ } Rule;
+ 
+@@ -301,6 +302,7 @@
+ 
+ 	/* rule matching */
+ 	c->isfloating = c->tags = 0;
++	c->iscentered = 1;
+ 	XGetClassHint(dpy, c->win, &ch);
+ 	class    = ch.res_class ? ch.res_class : broken;
+ 	instance = ch.res_name  ? ch.res_name  : broken;
+@@ -312,6 +314,7 @@
+ 		&& (!r->instance || strstr(instance, r->instance)))
+ 		{
+ 			c->isfloating = r->isfloating;
++			c->iscentered = r->iscentered;
+ 			c->tags |= r->tags;
+ 			for(m = mons; m && m->num != r->monitor; m = m->next);
+ 			if(m)
+@@ -1126,8 +1129,14 @@
+ 		applyrules(c);
+ 	}
+ 	/* geometry */
+-	c->x = c->oldx = wa->x;
+-	c->y = c->oldy = wa->y;
++	if((!c->mon->lt[c->mon->sellt]->arrange || c->isfloating) && c->iscentered) {
++		c->x = c->oldx = c->mon->wx + (c->mon->ww / 2 - wa->width / 2);
++		c->y = c->oldy = c->mon->wy + (c->mon->wh / 2 - wa->height / 2);
++	}
++	else {
++		c->x = c->oldx = wa->x;
++		c->y = c->oldy = wa->y;
++	}
+ 	c->w = c->oldw = wa->width;
+ 	c->h = c->oldh = wa->height;
+ 	c->oldbw = wa->border_width;
