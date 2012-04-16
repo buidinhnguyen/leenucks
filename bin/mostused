@@ -8,6 +8,8 @@ PATH=${PATH}:${HOME}/bin
 # apps {{{
 apps="dmenuclip
 dmenurl
+firefox
+freedroidRPG
 gajim
 gimp
 google-chrome
@@ -17,6 +19,7 @@ leave.sh
 libreoffice
 lyx
 openttd
+paintown
 urxvt
 urxvt-dvtm
 st

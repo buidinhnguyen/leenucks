@@ -16,7 +16,7 @@ case $1 in
 	;;
 	mute)
 		volcheck=($(amixer -c 0 get Master | awk "/^  Mono:/"))
-		if [ "${volcheck[0|2|@]}" -ne "0" ] ; then
+		if [ "${volcheck[0|2]}" -ne "0" ] ; then
 			amixer -q -c 0 set Master 0
 		else
 			amixer -q -c 0 set Master 80
