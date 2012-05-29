@@ -54,6 +54,7 @@ alias feh='feh -g 1600x1000 -d'
 alias ud="sudo lsof | grep 'DEL.*lib' | cut -f 1 -d ' ' | sort -u"
 alias torr="dtach -a /tmp/torr"
 alias engage="play -n -c1 synth whitenoise band -n 100 20 band -n 50 20 gain +25  fade h 1 864000 1"
+alias rtfn='elinks https://www.archlinux.org/feeds/news/'
 
 # vim {{{1
 alias sv='sudo vim'
