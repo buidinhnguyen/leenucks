@@ -24,6 +24,6 @@ choice_by_dmenu
 # execute the choice in background 
 case "$choice" in
 	a) pkill X &     ;;
-	r) sudo init 6 & ;;
-	s) sudo init 0 & ;;
+	r) sudo systemctl reboot ;;
+	s) sudo systemctl poweroff ;;
 esac
