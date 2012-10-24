@@ -45,6 +45,8 @@ alias :Q=':q'
 alias -g L='| less'
 alias -g G='| egrep --color=auto -n'
 alias -g W='| wgetpaste'
+alias reboot='sudo systemctl reboot'
+alias shutdown='sudo systemctl poweroff'
 
 # things {{{1
 alias ftp='ncftp'

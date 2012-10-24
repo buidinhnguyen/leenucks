@@ -9,7 +9,6 @@ PATH=${PATH}:${HOME}/bin
 apps="dmenuclip
 dmenurl
 firefox
-freedroidRPG
 gimp
 google-chrome
 gvba
@@ -18,7 +17,6 @@ leave.sh
 libreoffice
 lyx
 openttd
-paintown
 pioneers
 urxvt
 urxvt-dvtm
