@@ -40,11 +40,11 @@ extended_history share_history multios
 PROMPT=$'%# '
 
 # aliases, completions, functions and variables {{{1
-for file in ${XDG_CONFIG_HOME}/zsh/config/*.zsh ; do
+for file in ${HOME}/.config/zsh/config/*.zsh ; do
 	[[ -r "${file}" ]] && source "${file}"
 done
 
 # zsh-syntax-highlighting and zsh-history-substring-search {{{1
-for ext in ${XDG_CONFIG_HOME}/zsh/extensions/*/*.zsh ; do 
+for ext in ${HOME}/.config/zsh/extensions/*/*.zsh ; do 
 	[[ -r "${ext}" ]] && source "${ext}"
 done

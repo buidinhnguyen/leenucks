@@ -2,7 +2,7 @@
 if [[ ! -e "/tmp/clipbored.pid" ]] ; then
   clipbored                                         # clipboard manager
 fi
-mpd ${XDG_CONFIG_HOME}/mpd/mpd.conf                 # mpd
+mpd ${HOME}/.config/mpd/mpd.conf                 # mpd
 eval $(dbus-launch --sh-syntax --exit-with-session) # dbus
 bgs ~/files/pics/kyuubee.png                        # wallpaper
 xsetroot -cursor_name left_ptr                      # cursor
