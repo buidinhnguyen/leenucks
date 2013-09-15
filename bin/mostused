@@ -16,12 +16,11 @@ kb_switch.sh
 leave.sh
 libreoffice
 lyx
+mnb
 openttd
 pioneers
 urxvt
 urxvt-dvtm
-st
-st-dvtm
 virtualbox
 vms
 widelands"

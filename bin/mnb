@@ -1,0 +1,3 @@
+#!/bin/sh
+
+WINEARCH="win32" wine ~/Mud\ and\ Blood\ 2.exe

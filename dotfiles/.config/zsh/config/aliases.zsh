@@ -24,7 +24,7 @@ alias -s {error,errors}='less'
 alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF}='sxiv'
 alias -s {mpg,mpeg,avi,ogm,ogv,wmv,m4v,mp4,mov,f4v,mkv,flv}='mplayer'
 alias -s {mp3,ogg,wav,flac}='mplayer'
-alias -s {odt,doc,docx,ppt,pptx,xls,xlsx,rtf}='libreoffice'
+alias -s {ods,odt,doc,docx,docm,ppt,pptx,xls,xlsx,rtf}='libreoffice'
 alias -s pdf='zathura'
 
 # classics! {{{1
