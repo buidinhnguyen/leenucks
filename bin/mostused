@@ -10,7 +10,7 @@ apps="dmenuclip
 dmenurl
 firefox
 gimp
-google-chrome
+google-chrome-unstable
 gvba
 kb_switch.sh
 leave.sh
@@ -19,6 +19,7 @@ lyx
 mnb
 openttd
 pioneers
+pysol
 urxvt
 urxvt-dvtm
 virtualbox
