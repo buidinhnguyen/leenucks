@@ -20,13 +20,14 @@ static const char *tags[] = { "1/main", "2/web", "3/foo" };
 static const Rule rules[] = {
 	/* class            instance    title          tags mask     isfloating   monitor */
 	{ "Chromium",       NULL,       NULL,          1 << 1,       False,       -1 },
-	{ "Firefox",        NULL,       NULL,          1 << 1,       False,       -1 },
 	{ "Google-chrome",  NULL,       NULL,          1 << 1,       False,       -1 },
 	{ "Namoroka",       NULL,       NULL,          1 << 1,       False,       -1 },
 	{ NULL,             "Browser",  NULL,          1 << 1,       True,        -1 },
+	{ "Firefox",        NULL,       NULL,          1 << 2,       False,       -1 },
 	{ "Gajim.py",       NULL,       NULL,          1 << 2,       False,       -1 },
 	{ "Gimp",           NULL,       NULL,          1 << 2,       True,        -1 },
 	{ "Lyx",            NULL,       NULL,          1 << 2,       False,       -1 },
+	{ "Pymazon",        NULL,       NULL,          1 << 2,       True,        -1 },
 	{ "VirtualBox",     NULL,       NULL,          1 << 2,       True,        -1 },
 	{ "Xsane",          NULL,       NULL,          1 << 2,       True,        -1 },
 	{ NULL,             NULL,       "LibreOffice", 1 << 2,       False,       -1 },
