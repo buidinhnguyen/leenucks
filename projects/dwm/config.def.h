@@ -28,6 +28,7 @@ static const Rule rules[] = {
 	{ "Gimp",           NULL,       NULL,          1 << 2,       True,        -1 },
 	{ "Lyx",            NULL,       NULL,          1 << 2,       False,       -1 },
 	{ "Pymazon",        NULL,       NULL,          1 << 2,       True,        -1 },
+	{ "SWT",            NULL,       NULL,          1 << 2,       True,        -1 },
 	{ "VirtualBox",     NULL,       NULL,          1 << 2,       True,        -1 },
 	{ "Xsane",          NULL,       NULL,          1 << 2,       True,        -1 },
 	{ NULL,             NULL,       "LibreOffice", 1 << 2,       False,       -1 },
