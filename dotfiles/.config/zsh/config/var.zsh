@@ -9,7 +9,7 @@ if [[ -z "$(echo ${PATH} | grep home)" ]] ; then
 fi
 
 # variables {{{1
-export BROWSER="google-chrome"
+export BROWSER="firefox"
 export LANG="de_DE.UTF-8"
 export LC_MESSAGES="en_US.UTF-8"
 export EDITOR="vim"
