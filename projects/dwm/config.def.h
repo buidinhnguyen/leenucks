@@ -18,29 +18,30 @@ static const Bool topbar            = True;     /* False means bottom bar */
 static const char *tags[] = { "1/main", "2/web", "3/foo" };
 
 static const Rule rules[] = {
-	/* class             instance    title          tags mask     isfloating   monitor */
-	{ "Chromium",        NULL,       NULL,          1 << 1,       False,       -1 },
-	{ "Namoroka",        NULL,       NULL,          1 << 1,       False,       -1 },
-	{ NULL,              "Browser",  NULL,          1 << 1,       True,        -1 },
-	{ "Firefox",         NULL,       NULL,          1 << 1,       False,       -1 },
-	{ "Gajim.py",        NULL,       NULL,          1 << 2,       False,       -1 },
-	{ "Gimp",            NULL,       NULL,          1 << 2,       True,        -1 },
-	{ "Lyx",             NULL,       NULL,          1 << 2,       False,       -1 },
-	{ "Pymazon",         NULL,       NULL,          1 << 2,       True,        -1 },
-	{ "KeePass2",        NULL,       NULL,          1 << 2,       True,        -1 },
-	{ "SWT",             NULL,       NULL,          1 << 2,       True,        -1 },
-	{ "VirtualBox",      NULL,       NULL,          1 << 2,       True,        -1 },
-	{ "Xsane",           NULL,       NULL,          1 << 2,       True,        -1 },
-	{ "LibreOffice 4.1", NULL,       NULL,          1 << 2,       False,       -1 },
-	{ "feh",             NULL,       NULL,          0,            True,        -1 },
-	{ "openttd",         NULL,       NULL,          0,            True,        -1 },
-	{ "Sxiv",            NULL,       NULL,          0,            True,        -1 },
-	{ "mpv",             NULL,       NULL,          0,            True,        -1 },
-	{ "mplayer2",        NULL,       NULL,          0,            True,        -1 },
-	{ "Wine",            NULL,       NULL,          0,            True,        -1 },
-	{ "XFontSel",        NULL,       NULL,          0,            True,        -1 },
-	{ "Zathura",         NULL,       NULL,          0,            True,        -1 },
-	{ NULL,              NULL,       "Save file",   0,            True,        -1 },
+	/* class             instance    title                        tags mask     isfloating   monitor */
+	{ "Chromium",        NULL,       NULL,                        1 << 1,       False,       -1 },
+	{ "Namoroka",        NULL,       NULL,                        1 << 1,       False,       -1 },
+	{ NULL,              "Browser",  NULL,                        1 << 1,       True,        -1 },
+	{ "Firefox",         NULL,       NULL,                        1 << 1,       False,       -1 },
+	{ "KeePass2",        NULL,       "Auto-Type Entry Selection", 1 << 1,       True,        -1 },
+	{ "Gajim.py",        NULL,       NULL,                        1 << 2,       False,       -1 },
+	{ "Gimp",            NULL,       NULL,                        1 << 2,       True,        -1 },
+	{ "Lyx",             NULL,       NULL,                        1 << 2,       False,       -1 },
+	{ "Pymazon",         NULL,       NULL,                        1 << 2,       True,        -1 },
+	{ "KeePass2",        NULL,       NULL,                        1 << 2,       True,        -1 },
+	{ "SWT",             NULL,       NULL,                        1 << 2,       True,        -1 },
+	{ "VirtualBox",      NULL,       NULL,                        1 << 2,       True,        -1 },
+	{ "Xsane",           NULL,       NULL,                        1 << 2,       True,        -1 },
+	{ "LibreOffice 4.1", NULL,       NULL,                        1 << 2,       False,       -1 },
+	{ "feh",             NULL,       NULL,                        0,            True,        -1 },
+	{ "openttd",         NULL,       NULL,                        0,            True,        -1 },
+	{ "Sxiv",            NULL,       NULL,                        0,            True,        -1 },
+	{ "mpv",             NULL,       NULL,                        0,            True,        -1 },
+	{ "mplayer2",        NULL,       NULL,                        0,            True,        -1 },
+	{ "Wine",            NULL,       NULL,                        0,            True,        -1 },
+	{ "XFontSel",        NULL,       NULL,                        0,            True,        -1 },
+	{ "Zathura",         NULL,       NULL,                        0,            True,        -1 },
+	{ NULL,              NULL,       "Save file",                 0,            True,        -1 },
 };
 
 /* layout(s) */
@@ -70,7 +71,7 @@ static const char    *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolo
 static const char     *termcmd[] = { "urxvtc-dvtm", NULL };
 static const char *mostusedcmd[] = { "mostused", NULL };
 static const char     *lockcmd[] = { "slock", NULL };
-static const char     *passcmd[] = { "keepass" "--auto-type", NULL };
+static const char     *passcmd[] = { "keepass", "--auto-type", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */

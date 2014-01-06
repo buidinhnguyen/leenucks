@@ -1,0 +1,11 @@
+sudo adb start-server
+adb push recovery.img /sdcard/recovery.img
+adb push APPSSBL.bin /sdcard/APPSSBL.bin
+adb shell
+su
+dd if=/sdcard/recovery.img of=/dev/block/mmcblk0p17
+dd if=/sdcard/APPSSBL.bin of=/dev/block/mmcblk0p5
+reboot
+
+
+hold volume up + home button + power button, after a while (to see the logo that disappears and flashes the Back button and menu), release Power button
