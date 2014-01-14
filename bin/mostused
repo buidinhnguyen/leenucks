@@ -6,7 +6,8 @@ IFS=$(printf '\t\n')
 PATH=${PATH}:${HOME}/bin
 
 # apps {{{
-apps="dmenuclip
+apps="chromium
+dmenuclip
 dmenurl
 firefox
 gimp
